@@ -13,6 +13,7 @@ jobs:
       - name: Cek Firebase untuk update
         run: |
           curl -s "https://crazyxrat-default-rtdb.asia-southeast1.firebasedatabase.app/dev_update.json" > update.json
+          # Periksa apakah status update bernilai true
           STATUS=$(jq -r '.status' update.json)
           if [ "$STATUS" = "true" ]; then
             echo "UPDATE_TRIGGERED=true" >> $GITHUB_ENV
@@ -23,6 +24,7 @@ jobs:
       - name: Jalankan update
         if: env.UPDATE_TRIGGERED == 'true'
         run: |
+          # Ganti index.html dengan index_new.html (yang sudah disiapkan)
           cp index_new.html index.html
           git config --global user.name "BLUXUS Bot"
           git config --global user.email "bot@bluxus.com"
@@ -30,4 +32,5 @@ jobs:
           git commit -m "Auto update from Admin Panel"
           git push
           
+          # Reset status update di Firebase agar tidak terus-menerus terpicu
           curl -X PATCH "https://crazyxrat-default-rtdb.asia-southeast1.firebasedatabase.app/dev_update.json" -d '{"status":false}'
