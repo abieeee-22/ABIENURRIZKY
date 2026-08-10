@@ -1,0 +1,33 @@
+name: Auto Update BLUXUS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Cek Firebase untuk update
+        run: |
+          curl -s "https://crazyxrat-default-rtdb.asia-southeast1.firebasedatabase.app/dev_update.json" > update.json
+          STATUS=$(jq -r '.status' update.json)
+          if [ "$STATUS" = "true" ]; then
+            echo "UPDATE_TRIGGERED=true" >> $GITHUB_ENV
+          else
+            echo "UPDATE_TRIGGERED=false" >> $GITHUB_ENV
+          fi
+
+      - name: Jalankan update
+        if: env.UPDATE_TRIGGERED == 'true'
+        run: |
+          cp index_new.html index.html
+          git config --global user.name "BLUXUS Bot"
+          git config --global user.email "bot@bluxus.com"
+          git add index.html
+          git commit -m "Auto update from Admin Panel"
+          git push
+          
+          curl -X PATCH "https://crazyxrat-default-rtdb.asia-southeast1.firebasedatabase.app/dev_update.json" -d '{"status":false}'
