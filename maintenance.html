@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluxus — Sedang Maintenance</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg: #150607;
+    --panel: #1f0a0c;
+    --panel-2: #290e10;
+    --red: #e0263f;
+    --red-deep: #8f0f1f;
+    --ink: #f5e9ea;
+    --muted: #b98a8f;
+    --line: #3a1417;
+  }
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: radial-gradient(ellipse at top, #2a0d10 0%, var(--bg) 55%);
+    color: var(--ink);
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:32px; height:32px; border-radius:8px;
+    background: linear-gradient(135deg, var(--red), var(--red-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; color:#fff;
+  }
+  .brand-name{ font-weight:700; letter-spacing:0.3px; font-size:16px; }
+  .badge{
+    font-size:11px; text-transform:uppercase; letter-spacing:1px;
+    color: var(--red); border:1px solid var(--red-deep);
+    padding:4px 10px; border-radius:999px; background: rgba(224,38,63,0.08);
+    display:flex; align-items:center; gap:6px;
+  }
+  .pulse{
+    width:7px; height:7px; border-radius:50%; background: var(--red);
+    box-shadow: 0 0 0 rgba(224,38,63,0.5);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(224,38,63,0.5); }
+    70%{ box-shadow: 0 0 0 8px rgba(224,38,63,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(224,38,63,0); }
+  }
+
+  main{
+    max-width: 640px; margin: 0 auto;
+    min-height: calc(100vh - 140px);
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 48px 24px;
+    text-align:center;
+  }
+
+  .icon-wrap{
+    width:64px; height:64px; margin: 0 auto 24px;
+    border-radius:16px;
+    background: linear-gradient(135deg, var(--red), var(--red-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px;
+    box-shadow: 0 12px 32px rgba(224,38,63,0.3);
+  }
+
+  .eyebrow{
+    font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  h1{
+    font-size: 30px; margin: 0 0 14px; font-weight:800; letter-spacing:-0.3px;
+  }
+  .lede{ color: var(--muted); font-size:15.5px; margin: 0 auto 32px; max-width: 48ch; }
+
+  .card{
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    text-align:left;
+  }
+  .card h2{
+    font-size: 13px; margin: 0 0 12px; text-transform:uppercase; letter-spacing:0.8px;
+    color: var(--muted); display:flex; align-items:center; gap:8px;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; background: var(--red); display:inline-block; }
+
+  .progress-track{
+    width:100%; height:8px; border-radius:999px;
+    background: #2a0f12; overflow:hidden; margin-bottom:8px;
+  }
+  .progress-fill{
+    height:100%; width:68%; border-radius:999px;
+    background: linear-gradient(90deg, var(--red-deep), var(--red));
+  }
+  .progress-label{ font-size:13px; color: var(--muted); display:flex; justify-content:space-between; }
+
+  ul.status-list{ list-style:none; margin:0; padding:0; }
+  ul.status-list li{
+    display:flex; align-items:center; gap:10px;
+    font-size:14px; color:#ddc7c9; padding:8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  ul.status-list li:last-child{ border-bottom:none; }
+  .check{ color: var(--red); font-weight:700; }
+
+  .eta{ font-size:14px; color:var(--ink); }
+  .eta strong{ color: var(--red); }
+
+  footer{
+    max-width:640px; margin: 0 auto; padding: 0 24px 32px;
+    color: var(--muted); font-size: 12.5px; text-align:center;
+  }
+  footer a{ color: var(--red); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (max-width: 520px){
+    h1{ font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">B</div>
+      <div class="brand-name">Bluxus</div>
+    </div>
+    <div class="badge"><span class="pulse"></span>Maintenance</div>
+  </div>
+
+  <main>
+    <div class="icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+    <div class="eyebrow">Status layanan</div>
+    <h1>Bluxus sedang dalam perbaikan</h1>
+    <p class="lede">
+      Kami sedang menerapkan perbaikan pada sistem pendaftaran akun member.
+      Layanan akan kembali normal secepatnya.
+    </p>
+
+    <div class="card">
+      <h2><span class="dot"></span>Estimasi</h2>
+      <p class="eta" style="font-size:16px; margin:0;">Layanan akan kembali <strong>segera</strong>.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>Yang sedang dikerjakan</h2>
+      <ul class="status-list">
+        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menutup sementara pendaftaran akun baru</li>
+        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menerapkan perbaikan verifikasi akun</li>
+        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Pengujian sistem sebelum dibuka kembali</li>
+        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Publikasi versi v3</li>
+      </ul>
+    </div>
+
+    <p class="lede" style="margin-bottom:0; font-size:14px;">
+      Akun yang sudah ada tetap aman dan tidak terpengaruh.
+      Data kamu tidak hilang selama proses ini.
+    </p>
+  </main>
+
+  <footer>
+    Ada pertanyaan? <a href="#">Hubungi dukungan Bluxus</a> · Halaman ini akan diperbarui otomatis saat layanan kembali normal.
+  </footer>
+
+</body>
+</html>
