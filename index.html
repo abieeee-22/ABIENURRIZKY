@@ -1,178 +1,776 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bluxus — Sedang Maintenance</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-  :root{
-    --bg: #150607;
-    --panel: #1f0a0c;
-    --panel-2: #290e10;
-    --red: #e0263f;
-    --red-deep: #8f0f1f;
-    --ink: #f5e9ea;
-    --muted: #b98a8f;
-    --line: #3a1417;
-  }
-  *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; }
-  body{
-    background: radial-gradient(ellipse at top, #2a0d10 0%, var(--bg) 55%);
-    color: var(--ink);
-    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
-    line-height: 1.5;
-    min-height: 100vh;
-  }
-
-  .topbar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 18px 28px;
-    border-bottom: 1px solid var(--line);
-  }
-  .brand{ display:flex; align-items:center; gap:10px; }
-  .brand-mark{
-    width:32px; height:32px; border-radius:8px;
-    background: linear-gradient(135deg, var(--red), var(--red-deep));
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:15px; color:#fff;
-  }
-  .brand-name{ font-weight:700; letter-spacing:0.3px; font-size:16px; }
-  .badge{
-    font-size:11px; text-transform:uppercase; letter-spacing:1px;
-    color: var(--red); border:1px solid var(--red-deep);
-    padding:4px 10px; border-radius:999px; background: rgba(224,38,63,0.08);
-    display:flex; align-items:center; gap:6px;
-  }
-  .pulse{
-    width:7px; height:7px; border-radius:50%; background: var(--red);
-    box-shadow: 0 0 0 rgba(224,38,63,0.5);
-    animation: pulse 1.8s infinite;
-  }
-  @keyframes pulse{
-    0%{ box-shadow: 0 0 0 0 rgba(224,38,63,0.5); }
-    70%{ box-shadow: 0 0 0 8px rgba(224,38,63,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(224,38,63,0); }
-  }
-
-  main{
-    max-width: 640px; margin: 0 auto;
-    min-height: calc(100vh - 140px);
-    display:flex; flex-direction:column; justify-content:center;
-    padding: 48px 24px;
-    text-align:center;
-  }
-
-  .icon-wrap{
-    width:64px; height:64px; margin: 0 auto 24px;
-    border-radius:16px;
-    background: linear-gradient(135deg, var(--red), var(--red-deep));
-    display:flex; align-items:center; justify-content:center;
-    font-size:28px;
-    box-shadow: 0 12px 32px rgba(224,38,63,0.3);
-  }
-
-  .eyebrow{
-    font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
-    color: var(--muted); margin-bottom: 10px;
-  }
-  h1{
-    font-size: 30px; margin: 0 0 14px; font-weight:800; letter-spacing:-0.3px;
-  }
-  .lede{ color: var(--muted); font-size:15.5px; margin: 0 auto 32px; max-width: 48ch; }
-
-  .card{
-    background: linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 22px 24px;
-    margin-bottom: 18px;
-    text-align:left;
-  }
-  .card h2{
-    font-size: 13px; margin: 0 0 12px; text-transform:uppercase; letter-spacing:0.8px;
-    color: var(--muted); display:flex; align-items:center; gap:8px;
-  }
-  .dot{ width:8px; height:8px; border-radius:50%; background: var(--red); display:inline-block; }
-
-  .progress-track{
-    width:100%; height:8px; border-radius:999px;
-    background: #2a0f12; overflow:hidden; margin-bottom:8px;
-  }
-  .progress-fill{
-    height:100%; width:68%; border-radius:999px;
-    background: linear-gradient(90deg, var(--red-deep), var(--red));
-  }
-  .progress-label{ font-size:13px; color: var(--muted); display:flex; justify-content:space-between; }
-
-  ul.status-list{ list-style:none; margin:0; padding:0; }
-  ul.status-list li{
-    display:flex; align-items:center; gap:10px;
-    font-size:14px; color:#ddc7c9; padding:8px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  ul.status-list li:last-child{ border-bottom:none; }
-  .check{ color: var(--red); font-weight:700; }
-
-  .eta{ font-size:14px; color:var(--ink); }
-  .eta strong{ color: var(--red); }
-
-  footer{
-    max-width:640px; margin: 0 auto; padding: 0 24px 32px;
-    color: var(--muted); font-size: 12.5px; text-align:center;
-  }
-  footer a{ color: var(--red); text-decoration:none; }
-  footer a:hover{ text-decoration:underline; }
-
-  @media (max-width: 520px){
-    h1{ font-size: 24px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BLUXUS RAT V3.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root{--bg:#0a0000;--card:rgba(20,5,5,0.9);--border:rgba(255,0,0,0.2);--accent:#ff1744;--accent2:#d50000;--w:#fff;--m:#883333;--t:#cc8888;--g:#00ff88;--glow:rgba(255,0,0,0.15);--gold:#ffd700;--dev:#aa44ff;--orange:#ff8800;--cyan:#00e5ff}
+        *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;outline:none}
+        body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+        img{-webkit-user-drag:none;pointer-events:none}
+        .bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;opacity:0.03;pointer-events:none}
+        .loading-screen{display:flex;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9998;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s;opacity:1}
+        .loading-screen.hidden{opacity:0;pointer-events:none}
+        .loading-content{position:relative;z-index:1;text-align:center}
+        .loading-spinner{width:60px;height:60px;border:3px solid rgba(255,0,0,0.1);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 20px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-text{font-family:'Orbitron',monospace;font-size:14px;letter-spacing:4px;color:var(--t);animation:blink 1.2s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+        .loading-progress{width:200px;height:3px;background:rgba(255,0,0,0.1);border-radius:10px;margin:10px auto;overflow:hidden}
+        .loading-progress .bar{height:100%;width:0%;background:var(--accent);animation:loadBar 2s ease-in-out infinite}
+        @keyframes loadBar{0%{width:0%}50%{width:70%}100%{width:100%}}
+        .screen{display:none;width:100%;min-height:100vh}.screen.active{display:flex;align-items:center;justify-content:center;padding:16px}
+        .login-card{width:100%;max-width:420px;background:var(--card);backdrop-filter:blur(12px);border:2px solid var(--border);border-radius:28px;padding:50px 32px 38px;text-align:center;box-shadow:0 0 40px var(--glow);position:relative;overflow:hidden}
+        .login-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent)}
+        .photo-container{position:relative;width:100%;max-width:280px;height:120px;margin:0 auto 24px;border-radius:16px;overflow:hidden;border:2px solid var(--border);padding:2px}
+        .photo-container img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+        .text-rotator{position:relative;min-height:85px;margin-bottom:18px}.text-set{position:absolute;width:100%;opacity:0;display:none}.text-set.active{opacity:1;display:block}
+        .glitch-text{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:4px;position:relative;margin-bottom:6px;text-shadow:0 0 10px rgba(255,0,0,0.3)}
+        .subtitle{font-size:13px;color:var(--t);letter-spacing:3px;font-family:'Courier New',monospace}
+        .fg{position:relative;margin-bottom:16px;text-align:left}.fg i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--m);font-size:16px;z-index:2}
+        .fg input,.fg select,.fg textarea{width:100%;padding:14px 16px 14px 46px;border-radius:12px;border:1px solid var(--border);background:rgba(255,0,0,0.03);color:#fff;font-size:15px;font-family:'Poppins',sans-serif;outline:none;transition:.3s}
+        .fg textarea{padding:14px 16px;resize:vertical;min-height:90px}.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 25px rgba(255,0,0,0.12)}
+        .fg select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23883333' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+        .btn{width:100%;padding:15px;border:2px solid var(--accent);background:transparent;color:#fff;font-family:'Orbitron',monospace;font-size:14px;font-weight:700;letter-spacing:4px;border-radius:12px;cursor:pointer;transition:.3s;margin-top:8px;text-transform:uppercase}
+        .btn:hover{background:var(--accent)}.btn:active{transform:scale(0.97)}.btn:disabled{opacity:0.4;pointer-events:none}
+        .btn-sm{padding:8px 16px;font-size:10px;letter-spacing:2px;width:auto;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;text-transform:uppercase;transition:.2s}
+        .btn-sm:hover{background:var(--accent2)}.btn-sm.outline{background:transparent;border:1px solid var(--border);color:var(--t)}.btn-sm.outline:hover{border-color:var(--accent);color:var(--accent)}.btn-sm.danger{background:var(--accent2)}.btn-sm.gold{background:var(--gold);color:#000}.btn-sm.dev{background:var(--dev);color:#fff}
+        .sec-indicator{margin-top:14px;font-size:12px;color:var(--m);display:flex;align-items:center;justify-content:center;gap:6px}
+        .buy-link{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--border);border-radius:25px;color:var(--t);text-decoration:none;font-size:13px;transition:.3s}
+        .buy-link:hover{border-color:var(--accent);color:#fff}.buy-link i{font-size:14px}
+        .login-ft{margin-top:22px;font-size:10px;color:var(--m);font-family:'Courier New',monospace}
+        .dash-wrap{width:100%;max-width:960px;display:flex;flex-direction:column;height:100vh;height:100dvh;padding:14px}
+        .dash-top{display:flex;align-items:center;justify-content:space-between;padding:8px 4px;margin-bottom:10px;border-bottom:1px solid var(--border);flex-shrink:0}
+        .dash-top .menu-btn{background:none;border:none;color:var(--t);font-size:24px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:.2s}.dash-top .menu-btn:hover{color:#fff}
+        .dash-brand{font-family:'Orbitron',monospace;font-size:20px;font-weight:700;color:#fff;letter-spacing:2px}.dash-brand span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .dash-acts{display:flex;align-items:center;gap:10px}.dash-acts .refresh-btn{background:rgba(255,0,0,0.04);border:1px solid var(--border);color:var(--t);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:15px;transition:.2s}.dash-acts .refresh-btn:hover{color:#fff;border-color:var(--accent)}
+        .ava-sm{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px}
+        .stats-row{display:flex;gap:8px;margin-bottom:10px;flex-shrink:0}
+        .stat-box{flex:1;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center}
+        .stat-box .stat-num{font-family:'Orbitron',monospace;font-size:24px;font-weight:700;color:#fff}
+        .stat-box .stat-label{font-size:9px;color:var(--m);text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+        .stat-box .stat-icon{font-size:14px;color:var(--accent);margin-bottom:4px;display:block}
+        .user-banner{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:10px;flex-shrink:0;display:flex;align-items:center;gap:12px}
+        .user-banner .ub-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
+        .user-banner .ub-info{flex:1}.user-banner .ub-name{color:#fff;font-size:15px;font-weight:600}.user-banner .ub-name span{color:var(--accent)}
+        .user-banner .ub-detail{color:var(--m);font-size:10px;margin-top:2px}.user-banner .ub-detail span{color:var(--t)}.user-banner .ub-warn{font-size:10px;margin-top:3px}
+        .content-area{flex:1;overflow-y:auto;min-height:0}.page{display:none}.page.active{display:block}
+        .home-banner{width:100%;height:150px;border-radius:14px;overflow:hidden;position:relative;margin-bottom:16px;border:1px solid var(--border)}.home-banner img{width:100%;height:100%;object-fit:cover}
+        .home-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.home-card{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;transition:.3s}
+        .home-card:hover{border-color:var(--accent);background:rgba(255,0,0,0.06);transform:translateY(-2px)}.home-card i{font-size:32px;color:var(--accent);margin-bottom:8px;display:block}.home-card span{font-size:12px;color:var(--t);font-weight:600}
+        .section-title{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:var(--w);margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:8px}
+        .section-title i{color:var(--accent)}
+        .search-bar{width:100%;padding:12px 16px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;color:#fff;font-size:14px;outline:none;margin-bottom:10px;font-family:'Poppins',sans-serif}
+        .filter-tabs{display:flex;gap:6px;margin-bottom:10px}.filter-tabs button{flex:1;padding:8px;background:transparent;border:1px solid var(--border);color:var(--m);border-radius:10px;cursor:pointer;font-size:10px;font-weight:600;font-family:'Poppins',sans-serif}.filter-tabs button.active{background:var(--accent);color:#fff}
+        .device-card{background:rgba(255,0,0,0.02);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:8px;cursor:pointer;transition:.3s;display:flex;align-items:center;gap:14px}
+        .device-card:hover{border-color:var(--accent);background:rgba(255,0,0,0.05);transform:translateX(3px)}
+        .device-card .dc-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);flex-shrink:0}
+        .device-card .dc-info{flex:1;min-width:0}
+        .device-card .dc-name{color:#fff;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .device-card .dc-uid{color:var(--m);font-size:10px;margin-top:2px}
+        .device-card .dc-battery{display:flex;align-items:center;gap:6px;margin-top:4px}
+        .device-card .dc-battery i{font-size:14px}
+        .device-card .dc-battery span{font-size:11px;font-weight:600}
+        .device-card .dc-status{text-align:right;flex-shrink:0}
+        .device-card .dc-status .dc-online{font-size:10px;font-weight:600;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+        .device-card .dc-status .dc-online.online{color:var(--g);background:rgba(0,255,136,0.1)}
+        .device-card .dc-status .dc-online.offline{color:var(--accent);background:rgba(255,0,0,0.1)}
+        .device-card .dc-status .dc-charging{margin-top:4px;font-size:10px;color:var(--orange);display:flex;align-items:center;gap:4px;justify-content:flex-end}
+        .no-data{text-align:center;padding:50px 0;color:var(--m)}.no-data i{font-size:48px;display:block;margin-bottom:14px;opacity:0.2}
+        .tool-list{display:flex;flex-direction:column;gap:10px}
+        .tool-card{display:flex;align-items:center;gap:16px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:18px 16px;cursor:pointer;transition:.3s}
+        .tool-card:hover{border-color:var(--accent);background:rgba(255,0,0,0.06);transform:translateX(4px)}.tool-card.maintenance{opacity:0.5}.tool-card.premium{border-color:var(--gold)}
+        .tool-icon{width:50px;height:50px;border-radius:12px;background:rgba(255,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);flex-shrink:0}
+        .tool-card.premium .tool-icon{background:rgba(255,215,0,0.1);color:var(--gold)}.tool-info{flex:1}.tool-name{color:#fff;font-size:15px;font-weight:600}.tool-desc{color:var(--m);font-size:11px;margin-top:3px}
+        .tool-badge{padding:4px 12px;border-radius:12px;font-size:9px;font-weight:600;text-transform:uppercase}.tool-badge.mtn{background:rgba(255,136,0,0.15);color:#ff8800}.tool-badge.soon{background:rgba(136,136,136,0.15);color:#888}
+        .back-btn{background:none;border:1px solid var(--border);color:var(--t);padding:8px 18px;border-radius:25px;cursor:pointer;font-size:11px;margin-bottom:16px;font-family:'Poppins',sans-serif;display:inline-flex;align-items:center;gap:6px;transition:.2s}.back-btn:hover{border-color:var(--accent);color:#fff}
+        .tool-header{margin-bottom:18px}.tool-header h3{color:#fff;font-size:18px;font-weight:600}.tool-header p{color:var(--m);font-size:12px}
+        .result-card{display:flex;align-items:center;gap:12px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:6px}.result-cover{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#1a0505}
+        .result-info{flex:1;min-width:0}.result-name{color:#fff;font-size:13px;font-weight:600}.result-artist{color:var(--t);font-size:11px}.result-dur{color:var(--m);font-size:10px}
+        .weather-card{text-align:center;padding:24px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px}.weather-card img{width:100px;height:100px}.weather-card .temp{font-family:'Orbitron',monospace;font-size:48px;font-weight:700;color:#fff}.weather-card .desc{color:var(--t);font-size:16px}.weather-card .detail{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;text-align:left}
+        .weather-card .detail .wd{color:var(--m);font-size:11px}.weather-card .detail .wd span{color:var(--t);font-weight:600}
+        .upload-area{border:2px dashed var(--border);border-radius:14px;padding:30px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:12px;display:block;width:100%}
+        .upload-area:hover{border-color:var(--accent)}.upload-area i{font-size:40px;color:var(--accent);margin-bottom:8px;display:block}.upload-area p{color:var(--m);font-size:12px}
+        .ai-model-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+        .ai-model-card{display:flex;align-items:center;gap:14px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:.2s}
+        .ai-model-card:hover{border-color:var(--accent)}.ai-model-card .model-icon{font-size:28px;color:var(--accent);width:44px;text-align:center}.ai-model-card .model-info{flex:1}.ai-model-card .model-name{color:#fff;font-size:15px;font-weight:600}.ai-model-card .model-desc{color:var(--m);font-size:11px}
+        .ai-model-badge{padding:4px 12px;border-radius:12px;font-size:9px;font-weight:600;text-transform:uppercase}.ai-model-badge.on{background:rgba(0,255,136,0.15);color:var(--g)}.ai-model-badge.off{background:rgba(255,136,0,0.15);color:#ff8800}
+        .ai-chat{display:flex;flex-direction:column;height:100%}.ai-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+        .ai-header .ai-avatar{width:40px;height:40px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}.ai-header .ai-name{color:#fff;font-weight:600}
+        .ai-header .ai-status{font-size:10px;color:var(--g);display:flex;align-items:center;gap:4px}.ai-header .ai-status .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 1.5s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+        .ai-messages{flex:1;overflow-y:auto;margin-bottom:10px}.ai-msg{padding:12px 16px;border-radius:14px;margin-bottom:10px;max-width:85%;font-size:14px;line-height:1.6}
+        .ai-msg.user{background:var(--accent);color:#fff;margin-left:auto}.ai-msg.ai{background:rgba(255,0,0,0.06);border:1px solid var(--border);color:var(--t)}.ai-msg.ai b{color:#fff}.ai-msg.ai i{color:var(--accent)}
+        .ai-typing{display:none;padding:10px 16px;color:var(--m);font-size:12px;font-style:italic}.ai-typing.active{display:block}
+        .ai-input-row{display:flex;gap:8px}.ai-input-row input{flex:1;margin:0}.ai-input-row button{padding:12px 20px;background:var(--accent);border:none;color:#fff;border-radius:12px;cursor:pointer;font-size:14px}
+        .chat-page{display:flex;flex-direction:column;height:100%}.chat-messages{flex:1;overflow-y:auto;padding:6px 0}
+        .chat-bubble{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}.chat-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0}
+        .chat-body{flex:1}.chat-user{display:flex;align-items:center;gap:8px;margin-bottom:4px}.chat-username{color:#fff;font-size:13px;font-weight:600}
+        .chat-rank{font-size:9px;padding:3px 10px;border-radius:10px;font-weight:600;text-transform:uppercase}
+        .chat-rank.MEMBER{background:rgba(136,136,136,0.2);color:#888}.chat-rank.VIP{background:rgba(0,255,136,0.15);color:var(--g)}.chat-rank.RESELLER{background:rgba(93,173,226,0.2);color:#5dade2}
+        .chat-rank.ADMIN{background:rgba(255,23,68,0.2);color:var(--accent)}.chat-rank.PARTNER{background:rgba(255,215,0,0.2);color:#ffd700;box-shadow:0 0 8px rgba(255,215,0,0.3)}
+        .chat-rank.OWNER{background:rgba(255,215,0,0.25);color:#ffd700;box-shadow:0 0 14px rgba(255,215,0,0.5)}.chat-rank.DEVELOPER{background:rgba(170,68,255,0.2);color:#aa44ff;box-shadow:0 0 14px rgba(170,68,255,0.5);animation:devGlow 2s infinite}@keyframes devGlow{0%,100%{box-shadow:0 0 8px rgba(170,68,255,0.3)}50%{box-shadow:0 0 18px rgba(170,68,255,0.7)}}
+        .chat-msg{background:rgba(255,0,0,0.04);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--t);font-size:13px;line-height:1.5}
+        .chat-sticker{max-width:160px;border-radius:12px;cursor:pointer}.chat-input-row{display:flex;gap:8px;align-items:center;flex-shrink:0;padding-top:10px;border-top:1px solid var(--border)}
+        .chat-input-row input{flex:1;margin:0}.chat-input-row button{padding:10px 16px;background:var(--accent);border:none;color:#fff;border-radius:10px;cursor:pointer;font-size:15px}
+        .profile-card{text-align:center;padding:30px 0}.big-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:700;margin:0 auto 16px}
+        .pname{color:#fff;font-size:20px;font-weight:600}.prole{color:var(--t);font-size:14px;margin-bottom:20px}
+        .uid-box{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
+        .uid-box .label{font-size:10px;color:var(--m);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;text-align:center}
+        .uid-box .uid{font-family:'Courier New',monospace;font-size:14px;color:var(--accent);word-break:break-all;margin-bottom:12px;text-align:center;user-select:text;-webkit-user-select:text}
+        .uid-box button{display:block;width:100%;padding:12px;margin-bottom:8px;border:1px solid var(--border);background:transparent;color:var(--t);border-radius:10px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:12px;transition:.3s}
+        .uid-box button:hover{border-color:var(--accent);color:#fff}.uid-box button i{margin-right:6px}
+        .about-card{padding:20px 0}.about-card h2{font-family:'Orbitron',monospace;font-size:24px;font-weight:700;color:#fff;margin-bottom:4px;text-align:center}
+        .about-sub{color:var(--t);font-size:13px;letter-spacing:3px;margin-bottom:24px;text-align:center;font-family:'Courier New',monospace}
+        .about-section{margin-bottom:24px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:20px}
+        .about-section h4{color:var(--accent);font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}.about-section h4 i{font-size:18px}
+        .about-section p{color:var(--t);font-size:13px;line-height:1.8}.about-section ul{list-style:none;padding:0}.about-section ul li{color:var(--t);font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:10px}
+        .about-section ul li i{color:var(--accent);font-size:15px;width:22px;text-align:center}
+        .about-section .staff-card{display:flex;align-items:center;gap:14px;background:rgba(255,0,0,0.04);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:8px}
+        .about-section .staff-card .staff-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;flex-shrink:0}
+        .about-section .staff-card .staff-info .staff-name{color:#fff;font-size:14px;font-weight:600}.about-section .staff-card .staff-info .staff-role{color:var(--t);font-size:11px}
+        .about-section .staff-card.founder .staff-avatar{background:var(--gold);color:#000}.about-section .staff-card.founder .staff-name{color:var(--gold)}
+        .about-links{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+        .about-link{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;color:var(--t);text-decoration:none;font-size:14px;transition:.3s}
+        .about-link:hover{border-color:var(--accent);color:#fff}.about-link i{color:#25D366;font-size:22px}
+        .create-section{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
+        .create-section h3{color:#fff;font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px}.create-section h3 i{color:var(--accent)}
+        .create-section input,.create-section select{width:100%;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:13px;margin-bottom:10px;outline:none;font-family:'Poppins',sans-serif;transition:.2s}
+        .btn-create{width:100%;padding:12px;background:var(--accent);border:none;color:#fff;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;transition:.3s}.btn-create:hover{background:var(--accent2)}.btn-create.dev{background:var(--dev)}.btn-create.dev:hover{background:#9933ee}
+        .user-table-wrap{overflow-x:auto;margin-top:8px}.user-table{width:100%;border-collapse:collapse;font-size:12px;background:rgba(255,0,0,0.02);border-radius:10px}
+        .user-table th{background:rgba(255,0,0,0.06);padding:12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--t);border-bottom:1px solid var(--border)}
+        .user-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--t)}.user-table tr:hover td{background:rgba(255,0,0,0.03)}
+        .badge-role{font-size:10px;padding:3px 10px;border-radius:10px;font-weight:600;text-transform:uppercase}
+        .badge-MEMBER{background:rgba(136,136,136,0.2);color:#888}.badge-VIP{background:rgba(0,255,136,0.15);color:var(--g)}.badge-RESELLER{background:rgba(93,173,226,0.2);color:#5dade2}.badge-ADMIN{background:rgba(255,23,68,0.2);color:var(--accent)}
+        .badge-PARTNER{background:rgba(255,215,0,0.2);color:#ffd700;box-shadow:0 0 6px rgba(255,215,0,0.3)}.badge-OWNER{background:rgba(255,215,0,0.25);color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,0.5)}
+        .badge-DEVELOPER{background:rgba(170,68,255,0.2);color:#aa44ff;box-shadow:0 0 10px rgba(170,68,255,0.5);animation:devGlow 2s infinite}
+        .terminal-log{background:#0a0000;border:2px solid var(--border);border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:11px;color:var(--t);max-height:400px;overflow-y:auto;box-shadow:inset 0 0 10px rgba(255,0,0,0.05)}
+        .terminal-log .log-line{padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.03)}.terminal-log .log-time{color:var(--m);margin-right:10px}
+        .sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9995}.sidebar-overlay.active{display:block}
+        .sidebar{position:fixed;top:0;left:-300px;width:300px;height:100%;background:linear-gradient(180deg,#1a0505,#0a0000);z-index:9996;transition:.3s;border-right:1px solid var(--border);padding:24px 20px;display:flex;flex-direction:column}
+        .sidebar.active{left:0}.sidebar-close{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--m);font-size:22px;cursor:pointer;transition:.2s}.sidebar-close:hover{color:var(--accent)}
+        .sidebar-user{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:14px}
+        .sidebar-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
+        .sidebar-name{color:#fff;font-size:15px;font-weight:600}.sidebar-role{color:var(--m);font-size:11px}
+        .sidebar-menu{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+        .sidebar-item{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;background:none;border:none;color:var(--t);font-size:14px;cursor:pointer;transition:.2s;border-radius:10px;font-family:'Poppins',sans-serif;text-align:left}
+        .sidebar-item:hover{background:rgba(255,0,0,0.08);color:#fff}.sidebar-item i{width:24px;text-align:center;font-size:17px}.sidebar-item.logout{color:var(--accent);margin-top:auto}
+        .sidebar-item.dev-item{color:var(--dev)}.sidebar-item.dev-item:hover{background:rgba(170,68,255,0.15);color:#cc66ff}.sidebar-item.dev-item i{color:var(--dev)}
+        .sidebar-footer{border-top:1px solid var(--border);padding-top:10px;margin-top:8px}
+        .bottom-nav{display:flex;gap:6px;padding-top:10px;border-top:1px solid var(--border);flex-shrink:0}
+        .bottom-nav button{flex:1;padding:8px 4px;background:transparent;border:1px solid var(--border);color:var(--m);border-radius:12px;cursor:pointer;font-size:9px;font-weight:600;transition:.3s;font-family:'Poppins',sans-serif}
+        .bottom-nav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}.bottom-nav button i{display:block;font-size:18px;margin-bottom:2px}
+        .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9997;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+        .modal-overlay.active{display:flex}.modal-box{background:#1a0505;border:1px solid var(--border);border-radius:18px;padding:28px 24px;width:90%;max-width:400px;box-shadow:0 25px 60px rgba(0,0,0,0.9);animation:modalIn 0.3s ease}@keyframes modalIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        .modal-box h3{color:#fff;font-size:17px;text-align:center;margin-bottom:18px}.modal-box input,.modal-box textarea,.modal-box select{width:100%;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:14px;margin-bottom:10px;outline:none;font-family:'Poppins',sans-serif}
+        .modal-box textarea{min-height:60px;resize:vertical}.error-msg{color:var(--accent);font-size:12px;text-align:center;min-height:20px}
+        .modal-actions{display:flex;gap:10px;margin-top:8px}.modal-actions button{flex:1;padding:12px;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px}.btn-save{background:var(--accent);color:#fff}.btn-cancel-modal{background:transparent;border:1px solid var(--border);color:var(--m)}.btn-cancel-modal:hover{border-color:var(--accent);color:#fff}
+        .toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:10px 24px;border-radius:20px;z-index:9999;display:none;font-weight:600;font-size:13px;box-shadow:0 8px 30px rgba(255,0,0,0.4);animation:toastIn 0.3s ease}@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+        
+        .dev-chart-container{background:rgba(170,68,255,0.03);border:1px solid rgba(170,68,255,0.3);border-radius:14px;padding:16px;margin-bottom:14px}
+        .dev-chart-container h3{color:var(--dev);font-size:14px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+        .dev-chart-container canvas{width:100%;height:120px;display:block}
+        .dev-cards-row{display:flex;gap:8px;margin-bottom:14px}
+        .dev-card{flex:1;background:rgba(170,68,255,0.05);border:1px solid rgba(170,68,255,0.2);border-radius:12px;padding:14px 10px;text-align:center}
+        .dev-card .dev-card-value{font-family:'Orbitron',monospace;font-size:22px;font-weight:700;color:var(--dev)}
+        .dev-card .dev-card-label{font-size:9px;color:var(--m);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+        .dev-card .dev-card-icon{font-size:18px;color:var(--dev);margin-bottom:6px;display:block}
+        
+        .cmd-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .cmd-btn{width:100%;padding:14px 12px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:10px;color:var(--t);cursor:pointer;font-size:12px;font-family:'Poppins',sans-serif;font-weight:600;transition:.2s;text-align:center}
+        .cmd-btn:hover{background:rgba(255,0,0,0.08);border-color:var(--accent);color:#fff}
+        .cmd-btn i{display:block;font-size:20px;margin-bottom:4px}
+        .cmd-btn.full{grid-column:1/-1}
+        .device-select-bar{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+        .device-select-bar select{width:100%;padding:12px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none}
+        
+        .report-card{background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:8px}
+        .report-card .r-user{color:var(--accent);font-weight:600}
+        .report-card .r-date{color:var(--m);font-size:10px}
+        .report-card .r-msg{color:var(--t);font-size:13px;margin-top:4px}
+        
+        .broadcast-notif{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;max-width:320px;z-index:9999;display:none;animation:slideUp 0.4s ease;box-shadow:0 10px 30px rgba(0,0,0,0.8)}
+        .broadcast-notif.active{display:block}
+        @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .broadcast-notif .b-title{color:var(--accent);font-weight:700;font-size:13px}
+        .broadcast-notif .b-body{color:var(--t);font-size:12px;margin-top:4px}
+        .broadcast-notif .b-close{background:none;border:none;color:var(--m);font-size:16px;position:absolute;top:8px;right:12px;cursor:pointer}
+        
+        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}.hidden{display:none!important}
+        @media(max-width:480px){.login-card{padding:40px 20px 32px}.glitch-text{font-size:24px}.photo-container{height:110px}.home-banner{height:120px}.sidebar{width:280px;left:-280px}}
+    </style>
 </head>
 <body>
-
-  <div class="topbar">
-    <div class="brand">
-      <div class="brand-mark">B</div>
-      <div class="brand-name">Bluxus</div>
+<video class="bg-video" autoplay muted loop><source src="https://v1.pinimg.com/videos/iht/expMp4/6f/da/1b/6fda1b90a140c3ef0fdcbdaf615600d6_720w.mp4" type="video/mp4"></video>
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">CONNECTING</div>
+        <div class="loading-progress"><div class="bar"></div></div>
     </div>
-    <div class="badge"><span class="pulse"></span>Maintenance</div>
-  </div>
+</div>
 
-  <main>
-    <div class="icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-    <div class="eyebrow">Status layanan</div>
-    <h1>Bluxus sedang dalam perbaikan</h1>
-    <p class="lede">
-      Kami sedang menerapkan perbaikan pada sistem pendaftaran akun member.
-      Layanan akan kembali normal secepatnya.
-    </p>
-
-    <div class="card">
-      <h2><span class="dot"></span>Estimasi</h2>
-      <p class="eta" style="font-size:16px; margin:0;">Layanan akan kembali <strong>segera</strong>.</p>
+<!-- ============================================= -->
+<!-- WELCOME SCREEN (SEBELUM LOGIN)                 -->
+<!-- ============================================= -->
+<div class="screen" id="welcomeScreen">
+    <div class="login-card">
+        <div class="photo-container"><img src="https://c.termai.cc/i175/sQrLDJn.png" alt="BLUXUS RAT"></div>
+        <div style="text-align:center;padding:20px 0;">
+            <h1 style="font-family:'Orbitron';color:var(--accent);font-size:24px;">BLUXUS RAT V3.0</h1>
+            <p style="color:var(--t);font-size:14px;margin:10px 0 20px;">Sistem kontrol jarak jauh terbaru dengan keamanan tingkat tinggi. Unchained Weapon System.</p>
+            <button class="btn" onclick="goToLogin()"><i class="fas fa-right-to-bracket"></i> LOGIN</button>
+        </div>
     </div>
+</div>
 
-    <div class="card">
-      <h2><span class="dot"></span>Yang sedang dikerjakan</h2>
-      <ul class="status-list">
-        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menutup sementara pendaftaran akun baru</li>
-        <li><span class="check"><i class="fa-solid fa-check"></i></span> Menerapkan perbaikan verifikasi akun</li>
-        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Pengujian sistem sebelum dibuka kembali</li>
-        <li><span class="check"><i class="fa-solid fa-spinner"></i></span> Publikasi versi v3</li>
-      </ul>
+<!-- ============================================= -->
+<!-- LOGIN SCREEN                                   -->
+<!-- ============================================= -->
+<div class="screen active" id="loginScreen">
+    <div class="login-card">
+        <div class="photo-container"><img src="https://c.termai.cc/i175/sQrLDJn.png" alt="BLUXUS RAT"></div>
+        <div class="text-rotator">
+            <div class="text-set active"><h1 class="glitch-text" data-text="BLUXUS RAT">BLUXUS RAT</h1><p class="subtitle">Unchained Weapon System</p></div>
+            <div class="text-set"><h1 class="glitch-text" data-text="V3.0">V3.0</h1><p class="subtitle">Control Panel</p></div>
+            <div class="text-set"><h1 class="glitch-text" data-text="WELCOME">WELCOME</h1><p class="subtitle">Welcome to BLUXUS RAT</p></div>
+        </div>
+        
+        <form id="loginForm">
+            <div class="fg"><i class="fas fa-user"></i><input type="text" id="username" placeholder="Username" required autocomplete="off"></div>
+            <div class="fg"><i class="fas fa-key"></i><input type="password" id="password" placeholder="Password" required autocomplete="off"></div>
+            <button type="submit" class="btn" id="btnLogin"><i class="fas fa-right-to-bracket"></i> ACCESS</button>
+        </form>
+
+        <div class="sec-indicator"><i class="fas fa-shield-alt"></i> Encrypted Connection</div>
+        
+        <!-- Get Access Modal -->
+        <a href="#" onclick="openDevModal()" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--border);border-radius:25px;color:var(--t);text-decoration:none;font-size:13px;margin-top:12px;transition:.3s;">
+            <i class="fas fa-key"></i> Get Access Key
+        </a>
+        <div style="display:none;" id="devModal">
+            <div class="modal-overlay active" style="display:flex;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;">
+                <div class="modal-box">
+                    <h3>HUBUNGI DEVELOPER</h3>
+                    <p style="color:var(--t);text-align:center;margin-bottom:16px;">Klik nama developer untuk chat WhatsApp</p>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <button class="btn btn-sm gold" onclick="openWA('6285708989241');closeDevModal();">TIANZX</button>
+                        <button class="btn btn-sm gold" onclick="openWA('6283137236898');closeDevModal();">Yummy</button>
+                        <button class="btn btn-sm gold" onclick="openWA('628812742261');closeDevModal();">Kay</button>
+                    </div>
+                    <div class="modal-actions" style="margin-top:16px;">
+                        <button class="btn-cancel-modal" onclick="closeDevModal()" style="width:100%;">TUTUP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lupa Password -->
+        <div style="text-align:center;margin-top:10px;">
+            <a href="#" onclick="goToForgot()" style="color:var(--t);font-size:13px;text-decoration:none;">lupa pw?</a>
+        </div>
+
+        <div class="login-ft">Powered by TIANZX | V3.0</div>
     </div>
+</div>
 
-    <p class="lede" style="margin-bottom:0; font-size:14px;">
-      Akun yang sudah ada tetap aman dan tidak terpengaruh.
-      Data kamu tidak hilang selama proses ini.
-    </p>
-  </main>
+<!-- ============================================= -->
+<!-- FORGOT PASSWORD SCREEN                         -->
+<!-- ============================================= -->
+<div class="screen" id="forgotScreen">
+    <div class="login-card">
+        <h3 style="color:#fff;font-family:'Orbitron';text-align:center;">LUPA PASSWORD</h3>
+        <p style="color:var(--t);font-size:13px;text-align:center;margin-bottom:16px;">Akun harus terhubung ke email.</p>
+        <div class="fg"><i class="fas fa-envelope"></i><input type="email" id="resetEmail" placeholder="Email Akun"></div>
+        <button class="btn" onclick="sendResetCode()">KIRIM KODE</button>
+        <div id="resetCodeArea" style="display:none;margin-top:12px;">
+            <div class="fg"><i class="fas fa-key"></i><input type="text" id="resetCode" placeholder="Kode 6 Digit"></div>
+            <div class="fg"><i class="fas fa-lock"></i><input type="password" id="newPass1" placeholder="Password Baru"></div>
+            <div class="fg"><i class="fas fa-lock"></i><input type="password" id="newPass2" placeholder="Konfirmasi Password"></div>
+            <button class="btn" onclick="confirmReset()">RESET PASSWORD</button>
+        </div>
+        <div style="text-align:center;margin-top:10px;"><a href="#" onclick="goToLogin()" style="color:var(--t);font-size:13px;text-decoration:none;">↩ Kembali</a></div>
+    </div>
+</div>
 
-  <footer>
-    Ada pertanyaan? <a href="#">Hubungi dukungan Bluxus</a> · Halaman ini akan diperbarui otomatis saat layanan kembali normal.
-  </footer>
+<!-- ============================================= -->
+<!-- DASHBOARD SCREEN (HOME)                        -->
+<!-- ============================================= -->
+<div class="screen" id="dashboardScreen">
+    <div class="dash-wrap">
+        <div class="dash-top">
+            <button class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="dash-brand">BLUXUS<span>RAT</span><span style="font-size:10px;color:var(--dev);margin-left:6px">V3.0</span></div>
+            <div class="dash-acts">
+                <button class="refresh-btn" onclick="refreshAll()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                <div class="ava-sm" id="headerAvatar">B</div>
+            </div>
+        </div>
 
+        <div class="stats-row" id="statsRow">
+            <div class="stat-box"><i class="fas fa-users stat-icon"></i><div class="stat-num" id="statUsers">0</div><div class="stat-label">Users</div></div>
+            <div class="stat-box"><i class="fas fa-circle stat-icon" style="color:var(--g)"></i><div class="stat-num" id="statOnline">0</div><div class="stat-label">Online</div></div>
+            <div class="stat-box"><i class="fas fa-gauge-high stat-icon"></i><div class="stat-num" id="statPing">0 ms</div><div class="stat-label">Ping</div></div>
+        </div>
+
+        <div class="user-banner" id="userBanner">
+            <div class="ub-avatar" id="ubAvatar">B</div>
+            <div class="ub-info">
+                <div class="ub-name">Welcome back, <span id="userNameBanner">User</span></div>
+                <div class="ub-detail">Role: <span id="userRoleBanner">-</span> | Device: <span id="deviceNameBanner">-</span></div>
+                <div class="ub-warn" id="expiredWarning"></div>
+            </div>
+        </div>
+
+        <div class="content-area" id="mainContent"></div>
+
+        <div class="bottom-nav">
+            <button class="active" onclick="showTab('home')"><i class="fas fa-home"></i><span>HOME</span></button>
+            <button onclick="showTab('server')"><i class="fas fa-server"></i><span>SERVER</span></button>
+            <button id="managerNavBtn" onclick="showTab('manager')"><i class="fas fa-plus"></i><span>MANAGER</span></button>
+            <button onclick="showTab('profile')"><i class="fas fa-user"></i><span>PROFILE</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SIDEBAR                                        -->
+<!-- ============================================= -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+    <button class="sidebar-close" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
+    <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sideAvatar">B</div>
+        <div><div class="sidebar-name" id="sideName">Username</div><div class="sidebar-role" id="sideRole">-</div></div>
+    </div>
+    <div class="sidebar-menu" id="sidebarMenu"></div>
+    <div class="sidebar-footer"><button class="sidebar-item logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> LOG OUT</button></div>
+</div>
+
+<!-- ============================================= -->
+<!-- MODALS                                         -->
+<!-- ============================================= -->
+<div class="modal-overlay" id="pwModal"><div class="modal-box"><h3>CHANGE PASSWORD</h3><input type="password" id="oldPassword" placeholder="Old password"><input type="password" id="newPassword1" placeholder="New password"><input type="password" id="newPassword2" placeholder="Confirm password"><div class="error-msg" id="pwError"></div><div class="modal-actions"><button class="btn-cancel-modal" onclick="closePwModal()">CANCEL</button><button class="btn-save" onclick="changePassword()">SAVE</button></div></div></div>
+<div class="modal-overlay" id="infoModal"><div class="modal-box"><h3 id="infoTitle">INFO</h3><p id="infoMsg" style="color:var(--t);text-align:center;line-height:1.6"></p><div class="modal-actions"><button class="btn-cancel-modal" onclick="closeInfoModal()" style="width:100%">TUTUP</button></div></div></div>
+<div class="toast" id="toast"></div>
+<div class="broadcast-notif" id="broadcastNotif"><button class="b-close" onclick="closeBroadcast()"><i class="fas fa-times"></i></button><div class="b-title">📢 BROADCAST</div><div class="b-body" id="broadcastBody">Pesan</div></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script>
+const FB_URL="https://crazyxrat-default-rtdb.asia-southeast1.firebasedatabase.app",FB_KEY="AIzaSyB52n35ZlXog0NVeRSpcKE3YlGdbMCiZA0",API_KEY="hBvyU";
+firebase.initializeApp({apiKey:FB_KEY,databaseURL:FB_URL,projectId:"crazyxrat"});
+const db=firebase.database();
+const ROLES=["MEMBER","VIP","RESELLER","ADMIN","PARTNER","OWNER","DEVELOPER"];
+function canAccess(u,r){return ROLES.indexOf(u)>=ROLES.indexOf(r)}
+function getRoles(role){let i=ROLES.indexOf(role);return ROLES.slice(0,i)}
+
+let currentUser=null,currentRole=null,currentUid=null,selectedDevice=null,currentFilter='all',allDevices=[],newsData=[],chatData=[],sliderNewsData=[],devLogs=[],reports=[];
+let devRamHistory=[],devDiskHistory=[],devMemHistory=[];
+const MAX_HISTORY=15;
+let aiActive=false;
+let pageCache={},aiMessages={nova:[],blux:[]};
+let controlDevices=[];
+
+// =============================================
+// EMAIL SENDER & APP CODE (GANTI INI)
+// =============================================
+const EMAIL_SENDER = "nexus0lord@gmail.com"; 
+const APP_CODE = "owhf arqu obqi ttka";          
+let tempCode = "";
+
+function drawDevChart(canvasId,data,color){
+    let canvas=document.getElementById(canvasId);
+    if(!canvas||data.length<2)return;
+    let ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+    ctx.clearRect(0,0,w,h);
+    let min=Math.min(...data),max=Math.max(...data),range=max-min||1;
+    let padding=20;
+    ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;
+    for(let i=0;i<5;i++){let y=padding+(h-padding*2)*(i/4);ctx.beginPath();ctx.moveTo(padding,y);ctx.lineTo(w-padding,y);ctx.stroke()}
+    ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.shadowColor=color;ctx.shadowBlur=6;
+    let points=[];
+    data.forEach((val,i)=>{
+        let x=padding+((w-padding*2)/(data.length-1))*i;
+        let y=padding+(h-padding*2)-((val-min)/range)*(h-padding*2);
+        points.push({x,y,val});
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    });
+    ctx.stroke();ctx.shadowBlur=0;
+    points.forEach(p=>{
+        ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+        ctx.fillStyle='#fff';ctx.font='9px Poppins';ctx.textAlign='center';
+        ctx.fillText(Math.round(p.val),p.x,p.y-10);
+    });
+}
+
+function updateDevCharts(){
+    let ram=Math.floor(Math.random()*25+35);
+    let disk=Math.floor(Math.random()*30+40);
+    let mem=Math.floor(Math.random()*150+100);
+    document.getElementById('devRamVal').textContent=ram+'%';
+    document.getElementById('devDiskVal').textContent=disk+'%';
+    document.getElementById('devMemVal').textContent=mem+' MB';
+    devRamHistory.push(ram);if(devRamHistory.length>MAX_HISTORY)devRamHistory.shift();
+    devDiskHistory.push(disk);if(devDiskHistory.length>MAX_HISTORY)devDiskHistory.shift();
+    devMemHistory.push(mem);if(devMemHistory.length>MAX_HISTORY)devMemHistory.shift();
+    drawDevChart('devRamChart',devRamHistory,'#aa44ff');
+    drawDevChart('devDiskChart',devDiskHistory,'#ffd700');
+    drawDevChart('devMemChart',devMemHistory,'#00ff88');
+}
+
+function loadStats(){
+    db.ref('users').once('value').then(snap=>{
+        document.getElementById('statUsers').textContent=snap.exists()?Object.keys(snap.val()).length:0;
+    });
+    db.ref('devices').once('value').then(snap=>{
+        let online=0;if(snap.exists())snap.forEach(c=>{if(c.val().online)online++;});
+        document.getElementById('statOnline').textContent=online;
+    });
+    document.getElementById('statPing').textContent=Math.floor(Math.random()*30+20)+' ms';
+}
+
+document.addEventListener('contextmenu',e=>e.preventDefault());
+function showToast(m){let t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}
+function showInfoModal(t,m){document.getElementById('infoTitle').textContent=t;document.getElementById('infoMsg').textContent=m;document.getElementById('infoModal').classList.add('active')}
+function closeInfoModal(){document.getElementById('infoModal').classList.remove('active')}
+function genUUID(){return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{let r=Math.random()*16|0;return(c==='x'?r:(r&0x3|0x8)).toString(16)})}
+function addDevLog(a){devLogs.push({time:new Date().toLocaleTimeString(),action:a});if(devLogs.length>200)devLogs.shift();db.ref('dev_log').push({time:new Date().toLocaleTimeString(),action:a})}
+function openExternal(url){window.open(url,'_blank')}
+function closeBroadcast(){document.getElementById('broadcastNotif').classList.remove('active')}
+
+// =============================================
+// NAVIGASI SCREEN
+// =============================================
+function goToLogin() {
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    document.getElementById('loginScreen').classList.add('active');
+}
+function goToForgot() {
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    document.getElementById('forgotScreen').classList.add('active');
+}
+function openWA(num) {
+    window.open('https://wa.me/' + num, '_blank');
+}
+
+// =============================================
+// GET ACCESS MODAL
+// =============================================
+function openDevModal() {
+    document.getElementById('devModal').style.display = 'block';
+}
+function closeDevModal() {
+    document.getElementById('devModal').style.display = 'none';
+}
+
+// =============================================
+// FORGOT PASSWORD LOGIC
+// =============================================
+function sendResetCode() {
+    const email = document.getElementById('resetEmail').value.trim();
+    if(!email) return showToast('Masukkan email!');
+    tempCode = String(Math.floor(100000 + Math.random() * 900000));
+    showToast('Kode dikirim ke ' + email + ' (Kode: ' + tempCode + ')');
+    document.getElementById('resetCodeArea').style.display = 'block';
+}
+function confirmReset() {
+    const code = document.getElementById('resetCode').value.trim();
+    const p1 = document.getElementById('newPass1').value.trim();
+    const p2 = document.getElementById('newPass2').value.trim();
+    if(code !== tempCode) return showToast('Kode salah!');
+    if(p1.length < 4 || p1 !== p2) return showToast('Password tidak valid!');
+    showToast('Password berhasil direset!');
+    goToLogin();
+}
+
+db.ref('global_refresh').on('value',snap=>{
+    if(snap.exists()&&snap.val().timestamp){
+        let diff=Date.now()-snap.val().timestamp;
+        if(diff<5000&&snap.val().triggeredBy!==currentUser){
+            showToast('Dev triggered refresh!');
+            showTab('home');
+        }
+    }
+});
+
+// ====== BROADCAST (FIX LOOP) ======
+db.ref('broadcast').on('child_added',snap=>{
+    let data=snap.val();
+    if(!data||!data.message)return;
+    let parts=data.message.split(':');
+    if(parts.length>=2){
+        let from=parts[0].trim();
+        let msg=parts.slice(1).join(':').trim();
+        document.getElementById('broadcastBody').innerHTML='<b>'+from+'</b><br>'+msg;
+        document.getElementById('broadcastNotif').classList.add('active');
+        setTimeout(()=>{
+            document.getElementById('broadcastNotif').classList.remove('active');
+            db.ref('broadcast').remove(); 
+        }, 5000);
+    }
+});
+
+(function(){let saved=localStorage.getItem('bluxus_session');if(saved){let s=JSON.parse(saved);currentUser=s.username;currentRole=s.role;document.getElementById('loginScreen').classList.remove('active');document.getElementById('loadingScreen').classList.remove('hidden');setTimeout(async()=>{try{await db.ref('users/'+currentUser).once('value');await db.ref('uids/'+currentUser).once('value')}catch(e){}document.getElementById('loadingScreen').classList.add('hidden');showDashboard()},1500)}})();
+
+document.getElementById('loginForm').addEventListener('submit',async function(e){e.preventDefault();let u=document.getElementById('username').value.trim(),p=document.getElementById('password').value.trim();if(!u||!p){showToast('Isi username dan password');return}let btn=document.getElementById('btnLogin');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';try{let snap=await db.ref('users/'+u).once('value');if(!snap.exists()){showToast('User tidak ditemukan');btn.disabled=false;btn.innerHTML='<i class="fas fa-right-to-bracket"></i> ACCESS';return}let d=snap.val();if(d.password!==p){showToast('Password salah');btn.disabled=false;btn.innerHTML='<i class="fas fa-right-to-bracket"></i> ACCESS';return}if(d.banned){showToast('Akun dibanned');btn.disabled=false;btn.innerHTML='<i class="fas fa-right-to-bracket"></i> ACCESS';return}if(d.expiry&&new Date()>new Date(d.expiry)){showToast('Akun expired');btn.disabled=false;btn.innerHTML='<i class="fas fa-right-to-bracket"></i> ACCESS';return}currentUser=u;currentRole=d.role||'MEMBER';localStorage.setItem('bluxus_session',JSON.stringify({username:u,role:currentRole}));addDevLog('LOGIN: '+u);document.getElementById('loadingScreen').classList.remove('hidden');setTimeout(()=>{document.getElementById('loadingScreen').classList.add('hidden');showDashboard()},1500)}catch(e){showToast('Error');btn.disabled=false;btn.innerHTML='<i class="fas fa-right-to-bracket"></i> ACCESS'}});
+
+function showDashboard(){
+    document.getElementById('loginScreen').classList.remove('active');
+    document.getElementById('dashboardScreen').classList.add('active');
+    document.getElementById('userNameBanner').textContent=currentUser;
+    document.getElementById('userRoleBanner').textContent=currentRole;
+    document.getElementById('ubAvatar').textContent=currentUser.charAt(0).toUpperCase();
+    document.getElementById('sideName').textContent=currentUser;
+    document.getElementById('sideRole').textContent=currentRole;
+    document.getElementById('sideAvatar').textContent=currentUser.charAt(0).toUpperCase();
+    document.getElementById('headerAvatar').textContent=currentUser.charAt(0).toUpperCase();
+    if(currentRole==='VIP'||currentRole==='DEVELOPER'||currentRole==='MEMBER'){
+        document.getElementById('managerNavBtn').style.display='none';
+    }else{
+        document.getElementById('managerNavBtn').style.display=canAccess(currentRole,'RESELLER')?'':'none';
+    }
+    db.ref('uids/'+currentUser).once('value').then(snap=>{
+        if(snap.exists())currentUid=snap.val().uid;
+        else{currentUid=genUUID();db.ref('uids/'+currentUser).set({uid:currentUid,updatedAt:Date.now()})}
+        listenDevices();
+    });
+    buildSidebar();
+    showTab('home');
+    setInterval(loadStats,5000);
+}
+
+function buildSidebar(){
+    let m=document.getElementById('sidebarMenu'),h='';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'home\')"><i class="fas fa-th-large"></i> MAIN</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'tools\')"><i class="fas fa-tools"></i> TOOLS</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'ai\')"><i class="fas fa-robot"></i> AI</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'chat\')"><i class="fas fa-comments"></i> GLOBAL CHAT</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'report\')"><i class="fas fa-flag"></i> REPORT / FEEDBACK</button>';
+    if(currentRole==='DEVELOPER')h+='<button class="sidebar-item dev-item" onclick="closeSidebar();showTab(\'dev\')"><i class="fas fa-shield-alt"></i> DEV PANEL</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'update\')"><i class="fas fa-sync-alt"></i> UPDATE</button>';
+    h+='<button class="sidebar-item" onclick="closeSidebar();showTab(\'about\')"><i class="fas fa-info-circle"></i> ABOUT</button>';
+    m.innerHTML=h;
+}
+
+function showTab(tab){
+    document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));
+    let nm={home:1,server:2,manager:3,profile:4};
+    let idx=nm[tab]||1;
+    let btn=document.querySelector('.bottom-nav button:nth-child('+idx+')');
+    if(btn)btn.classList.add('active');
+    let stats=document.getElementById('statsRow'),banner=document.getElementById('userBanner');
+    if(tab==='home'){stats.classList.remove('hidden');banner.classList.remove('hidden');loadStats();}
+    else{stats.classList.add('hidden');banner.classList.add('hidden');}
+    let c=document.getElementById('mainContent');
+    if(pageCache[tab]){c.innerHTML=pageCache[tab];afterRender(tab);return}
+    let html=buildPage(tab);c.innerHTML=html;pageCache[tab]=html;afterRender(tab);
+}
+
+function buildPage(tab){
+    let p={
+        home:'<div class="page active"><div class="home-banner"><img src="https://c.termai.cc/i113/u1C.jpg"></div><div class="home-grid"><div class="home-card" onclick="showTab(\'news\')"><i class="fas fa-newspaper"></i><span>NEWS</span></div><div class="home-card" onclick="showTab(\'server\')"><i class="fas fa-server"></i><span>SERVER</span></div></div><div class="card-box" style="text-align:center;border-color:var(--gold);background:var(--bg);margin-top:12px"><i class="fas fa-download" style="font-size:24px;color:var(--gold)"></i><div style="font-weight:600">Download Phising [coming soon]</div><div class="text-sub" style="font-size:12px">santai next update wok, ga lama</div></div><div id="sliderNewsArea"></div></div>',
+        server:'<div class="page active"><div class="section-title"><i class="fas fa-server"></i> SERVER STATUS</div><div class="dev-chart-container"><h3 style="color:var(--gold)">RAM <span style="color:var(--t);font-size:10px">(Kuning)</span></h3><canvas id="devRamChart" width="360" height="120"></canvas></div><div class="dev-chart-container"><h3 style="color:var(--g)">DISK <span style="color:var(--t);font-size:10px">(Hijau)</span></h3><canvas id="devDiskChart" width="360" height="120"></canvas></div><div class="dev-chart-container"><h3 style="color:var(--cyan)">MS <span style="color:var(--t);font-size:10px">(Biru)</span></h3><canvas id="devMemChart" width="360" height="120"></canvas></div></div>',
+        news:'<div class="page active"><div class="section-title"><i class="fas fa-newspaper"></i> BERITA TERKINI</div><div id="sliderNewsArea"></div></div>',
+        manager:'<div class="page active"><div class="create-section"><h3><i class="fas fa-user-plus"></i> CREATE ACCOUNT</h3><input type="text" id="newUsername" placeholder="Username"><input type="password" id="newPassword" placeholder="Password"><select id="expirySelect"><option value="7">7 Days</option><option value="30">1 Month</option><option value="99999">Permanent</option></select><select id="newRole"></select><button class="btn-create" onclick="createAccount()">CREATE ACCOUNT</button></div></div>',
+        profile:'<div class="page active"><div class="profile-card"><div class="big-avatar" id="profileAvatar">B</div><div class="pname" id="profileName">Username</div><div class="prole" id="profileRole">-</div><div class="uid-box"><div class="label">YOUR UID</div><div class="uid" id="profileUid">Loading...</div><button onclick="navigator.clipboard.writeText(document.getElementById(\'profileUid\').textContent);showToast(\'UID Dicopy!\')"><i class="fas fa-copy"></i> COPY UID</button><button onclick="generateNewUid()"><i class="fas fa-redo"></i> GENERATE NEW</button></div><button class="btn" style="width:auto;padding:14px 24px;font-size:13px" onclick="openPwModal()"><i class="fas fa-lock"></i> CHANGE PASSWORD</button></div><div style="margin-top:16px;padding:20px;background:rgba(255,0,0,0.03);border:1px solid var(--border);border-radius:14px;"><h3 style="color:#fff;text-align:center;margin-bottom:12px;">VERIFIKASI EMAIL</h3><div class="fg"><i class="fas fa-envelope"></i><input type="email" id="verifyEmail" placeholder="Email Anda"></div><button class="btn" onclick="sendVerifyCode()">KIRIM KODE</button><div id="verifyCodeArea" style="display:none;margin-top:12px;"><div class="fg"><i class="fas fa-key"></i><input type="text" id="verifyCode" placeholder="Kode 6 Digit"></div><button class="btn" onclick="confirmVerify()">VERIFIKASI</button></div></div></div>',
+        tools:'<div class="page active"><div class="tool-list"><div class="tool-card premium" onclick="showTab(\'tool-yummy\')"><div class="tool-icon"><i class="fas fa-search"></i></div><div class="tool-info"><div class="tool-name">Yummy Search</div><div class="tool-desc">AI-powered search engine</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-downloader\')"><div class="tool-icon"><i class="fas fa-download"></i></div><div class="tool-info"><div class="tool-name">Video Downloader</div><div class="tool-desc">Download dari YouTube, TikTok, IG, FB</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-gempa\')"><div class="tool-icon"><i class="fas fa-house-damage"></i></div><div class="tool-info"><div class="tool-name">Info Gempa</div><div class="tool-desc">Data gempa terkini BMKG</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-source\')"><div class="tool-icon"><i class="fas fa-code"></i></div><div class="tool-info"><div class="tool-name">Get Source</div><div class="tool-desc">Lihat source code website</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-cuaca\')"><div class="tool-icon"><i class="fas fa-cloud-sun"></i></div><div class="tool-info"><div class="tool-name">Info Cuaca</div><div class="tool-desc">Cek cuaca berdasarkan kota</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-hd\')"><div class="tool-icon"><i class="fas fa-image"></i></div><div class="tool-info"><div class="tool-name">HD Enhancer</div><div class="tool-desc">Tingkatkan kualitas gambar ke HD</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-wink\')"><div class="tool-icon"><i class="fas fa-magic"></i></div><div class="tool-info"><div class="tool-name">Wink AI</div><div class="tool-desc">Enhance gambar HD & Ultra HD</div></div><i class="fas fa-chevron-right"></i></div><div class="tool-card" onclick="showTab(\'tool-gofile\')"><div class="tool-icon"><i class="fas fa-cloud-upload-alt"></i></div><div class="tool-info"><div class="tool-name">GoFile Upload</div><div class="tool-desc">Upload file ke GoFile</div></div><i class="fas fa-chevron-right"></i></div></div></div>',
+        "tool-yummy":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3 style="color:var(--gold)">Yummy Search</h3></div><div class="fg"><i class="fas fa-search" style="color:var(--gold)"></i><input type="text" id="yQuery" placeholder="Cari..."></div><button class="btn" style="border-color:var(--gold);color:var(--gold)" onclick="yummySearch()">SEARCH</button><div id="yResults" style="margin-top:14px"></div></div>',
+        "tool-downloader":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>Video Downloader</h3></div><div class="fg"><i class="fas fa-link"></i><input type="text" id="dlUrl" placeholder="Paste link..."></div><button class="btn" onclick="downloadMedia()">DOWNLOAD</button><div class="dl-result" id="dlResult" style="display:none"></div></div>',
+        "tool-gempa":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>Info Gempa</h3></div><div id="gempaContent">Loading...</div></div>',
+        "tool-source":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>Get Source</h3></div><div class="fg"><i class="fas fa-link"></i><input type="text" id="sourceUrl" placeholder="Paste URL..."></div><button class="btn" onclick="getSource()">GET SOURCE</button><div class="source-result" id="sourceResult" style="display:none"></div></div>',
+        "tool-cuaca":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>Info Cuaca</h3></div><div class="fg"><i class="fas fa-map-marker-alt"></i><input type="text" id="wCity" placeholder="Nama kota..."></div><button class="btn" onclick="getWeather()">CEK CUACA</button><div id="weatherResult" style="margin-top:14px"></div></div>',
+        "tool-hd":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>HD Enhancer</h3></div><label class="upload-area" for="hdFile"><i class="fas fa-cloud-upload-alt"></i><p>Pilih gambar</p></label><input type="file" id="hdFile" accept="image/*" style="display:none" onchange="uploadHD()"><div id="hdResult" style="margin-top:14px"></div></div>',
+        "tool-wink":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>Wink AI</h3></div><select id="winkType" class="search-bar"><option value="hd">HD</option><option value="ultra_hd">Ultra HD</option></select><label class="upload-area" for="winkFile"><i class="fas fa-cloud-upload-alt"></i><p>Pilih gambar</p></label><input type="file" id="winkFile" accept="image/*" style="display:none" onchange="uploadWink()"><div id="winkResult" style="margin-top:14px"></div></div>',
+        "tool-gofile":'<div class="page active"><button class="back-btn" onclick="showTab(\'tools\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="tool-header"><h3>GoFile Upload</h3></div><label class="upload-area" for="gfFile"><i class="fas fa-cloud-upload-alt"></i><p>Pilih file</p></label><input type="file" id="gfFile" style="display:none" onchange="uploadGoFile()"><div id="gfResult" style="margin-top:14px"></div></div>',
+        ai:'<div class="page active"><div class="tool-header"><h3>AI MODELS</h3></div><div class="ai-model-list"><div class="ai-model-card" onclick="showTab(\'ai-chat\')"><div class="model-icon"><i class="fas fa-robot"></i></div><div class="model-info"><div class="model-name">Nova AI</div><div class="model-desc">AI model aktif</div></div><span class="ai-model-badge on">ACTIVE</span></div></div></div>',
+        "ai-chat":'<div class="page active"><button class="back-btn" onclick="showTab(\'ai\')"><i class="fas fa-arrow-left"></i> BACK</button><div class="ai-chat"><div class="ai-header"><div class="ai-avatar"><i class="fas fa-robot"></i></div><div><strong style="color:#fff">NOVA AI</strong><div class="ai-status" id="aiStatus"><span class="dot"></span> Online</div></div></div><div class="ai-messages" id="aiMessages"></div><div class="ai-typing" id="aiTyping">Mengetik...</div><div class="ai-input-row"><input type="text" id="aiInput" class="search-bar" placeholder="Ketik pesan..." style="margin:0"><button onclick="sendAI()"><i class="fas fa-paper-plane"></i></button></div></div></div>',
+        chat:'<div class="page active"><div class="chat-page"><div class="chat-messages" id="chatMessages"></div><div class="chat-input-row"><input type="text" id="chatInput" class="search-bar" placeholder="Ketik pesan..." style="margin:0"><input type="file" id="stickerFile" accept="image/*" style="display:none" onchange="sendSticker()"><button onclick="document.getElementById(\'stickerFile\').click()"><i class="fas fa-image"></i></button><button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button></div></div></div>',
+        report:'<div class="page active"><div class="create-section"><h3><i class="fas fa-flag"></i> LAPORAN / FEEDBACK</h3><textarea id="reportInput" placeholder="Tulis laporan atau feedback..." style="width:100%;padding:14px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:14px;font-family:\'Poppins\',sans-serif;resize:vertical;min-height:80px;outline:none"></textarea><button class="btn-create" onclick="sendReport()">KIRIM LAPORAN</button></div><div id="reportList"></div></div>',
+        dev:'<div class="page active"><div class="dev-chart-container"><h3><i class="fas fa-chart-line"></i> RAM USAGE</h3><canvas id="devRamChart" width="360" height="120"></canvas></div><div class="dev-chart-container"><h3><i class="fas fa-chart-line" style="color:var(--gold)"></i> DISK USAGE</h3><canvas id="devDiskChart" width="360" height="120"></canvas></div><div class="dev-chart-container"><h3><i class="fas fa-chart-line" style="color:var(--g)"></i> MEMORY USAGE</h3><canvas id="devMemChart" width="360" height="120"></canvas></div><div class="dev-cards-row"><div class="dev-card"><i class="fas fa-microchip dev-card-icon"></i><div class="dev-card-value" id="devRamVal">0%</div><div class="dev-card-label">RAM Usage</div></div><div class="dev-card"><i class="fas fa-hard-drive dev-card-icon"></i><div class="dev-card-value" id="devDiskVal">0%</div><div class="dev-card-label">Disk Usage</div></div><div class="dev-card"><i class="fas fa-memory dev-card-icon"></i><div class="dev-card-value" id="devMemVal">0 MB</div><div class="dev-card-label">Memory</div></div></div><div class="create-section"><h3><i class="fas fa-sync-alt"></i> GLOBAL REFRESH</h3><button class="btn-create dev" onclick="globalRefresh()"><i class="fas fa-globe"></i> REFRESH ALL USERS</button></div><div class="create-section"><h3><i class="fas fa-terminal"></i> LOG AKTIVITAS</h3><div class="terminal-log" id="devLogView" style="max-height:200px"></div></div><div class="create-section"><h3><i class="fas fa-user-plus"></i> ADD ACCOUNT</h3><input type="text" id="daUser" placeholder="Username"><input type="password" id="daPass" placeholder="Password"><select id="daRole"><option>MEMBER</option><option>VIP</option><option>RESELLER</option><option>ADMIN</option><option>PARTNER</option><option>OWNER</option><option>DEVELOPER</option></select><select id="daExp"><option value="99999">Permanent</option><option value="7">7 Hari</option><option value="30">1 Bulan</option><option value="90">3 Bulan</option><option value="365">1 Tahun</option></select><button class="btn-create" onclick="devAddAccount()">CREATE</button></div><div class="create-section"><h3><i class="fas fa-users"></i> USER MANAGEMENT</h3><div class="user-table-wrap" id="devUserTable"></div></div><div class="create-section"><h3><i class="fas fa-bullhorn"></i> BROADCAST</h3><textarea id="broadcastMsg" placeholder="Format: <nama>:<teks>" style="width:100%;padding:14px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:14px;font-family:\'Poppins\',sans-serif;resize:vertical;min-height:80px;outline:none"></textarea><button class="btn-create" onclick="broadcast()">KIRIM</button></div><div class="create-section"><h3><i class="fas fa-arrow-up"></i> UPGRADE ROLE</h3><input type="text" id="upUser" placeholder="Username"><select id="upRole"></select><button class="btn-create" onclick="upgradeRole()">UPGRADE</button></div><div class="create-section"><h3><i class="fas fa-envelope"></i> LAPORAN USER</h3><button class="btn-create dev" onclick="showReports()"><i class="fas fa-file-alt"></i> LIHAT SEMUA LAPORAN</button><div id="reportsArea"></div></div></div>',
+        update:'<div class="page active"><div class="about-section"><h4><i class="fas fa-star"></i> UPDATE V3.0</h4><ul><li><i class="fas fa-gamepad"></i> Navigasi RAT baru</li><li><i class="fas fa-newspaper"></i> Halaman News</li><li><i class="fas fa-bullhorn"></i> Broadcast Fix</li><li><i class="fas fa-envelope"></i> Verifikasi Email</li><li><i class="fas fa-key"></i> Lupa Password</li></ul></div></div>',
+        about:'<div class="page active"><div class="about-card"><h2>BLUXUS RAT V3.0</h2><p class="about-sub">UNCHAINED WEAPON SYSTEM</p><div class="about-section"><h4><i class="fas fa-info-circle"></i> TENTANG APLIKASI</h4><p>BLUXUS RAT V3.0 adalah Remote Administration Tool profesional dengan fitur keamanan dan kontrol terbaru.</p></div><div class="about-section"><h4><i class="fas fa-star"></i> FITUR V3.0</h4><ul><li><i class="fas fa-gamepad"></i> RAT Control Panel</li><li><i class="fas fa-bullhorn"></i> Broadcast Realtime</li><li><i class="fas fa-flag"></i> Report & Feedback</li><li><i class="fas fa-envelope"></i> Verifikasi Email</li></ul></div><div class="about-links"><a href="#" class="about-link" onclick="openExternal(\'https://whatsapp.com/channel/0029VbD9HztKrWQuuymMCU0w\')"><i class="fab fa-whatsapp"></i> Saluran Official</a><a href="#" class="about-link" onclick="openExternal(\'https://chat.whatsapp.com/ImF67mLQSnZ8xYwKpMO4EU?s=cl&p=a&mlu=4\')"><i class="fab fa-whatsapp"></i> Grup Official</a></div></div></div>'
+    };
+    return p[tab]||'';
+}
+
+function afterRender(tab){
+    if(tab==='server'){updateDevCharts();setInterval(updateDevCharts,4000)}
+    if(tab==='manager')renderManagerRoles();
+    if(tab==='profile')renderProfileData();
+    if(tab==='chat'){listenChat();setTimeout(()=>{let el=document.getElementById('chatMessages');if(el)el.scrollTop=el.scrollHeight},300)}
+    if(tab==='ai-chat'){aiActive=true;let mc=document.getElementById('aiMessages');if(mc){mc.innerHTML=aiMessages['nova'].join('');mc.scrollTop=mc.scrollHeight}}
+    if(tab==='tool-gempa')setTimeout(loadGempa,300);
+    if(tab==='home'){loadSliderNews();loadStats()}
+    if(tab==='dev'){renderDevLog();renderDevUsers();renderUpRoleSelect();updateDevCharts();setInterval(updateDevCharts,4000)}
+    if(tab==='report'){listenReports();renderReports()}
+}
+
+function loadStats(){
+    db.ref('users').once('value').then(snap=>{
+        document.getElementById('statUsers').textContent=snap.exists()?Object.keys(snap.val()).length:0;
+    });
+    db.ref('devices').once('value').then(snap=>{
+        let online=0;if(snap.exists())snap.forEach(c=>{if(c.val().online)online++;});
+        document.getElementById('statOnline').textContent=online;
+    });
+    document.getElementById('statPing').textContent=Math.floor(Math.random()*30+20)+' ms';
+}
+
+function listenDevices(){
+    if(!currentUser)return;
+    db.ref('devices').off();
+    db.ref('devices').on('value',snap=>{
+        allDevices=[];
+        let seen=new Set();
+        if(snap.exists())snap.forEach(c=>{
+            let d=c.val();
+            if(d.username===currentUser){
+                let key=d.name||'Unknown';
+                if(!seen.has(key)){
+                    seen.add(key);
+                    allDevices.push({
+                        id:c.key,
+                        username:d.username,
+                        online:d.online||false,
+                        name:d.name||'Unknown',
+                        battery:d.battery||Math.floor(Math.random()*60+40),
+                        charging:d.charging||false
+                    });
+                }
+            }
+        });
+        renderDevices();
+    });
+}
+let rt;
+function renderDevices(){
+    clearTimeout(rt);
+    rt=setTimeout(()=>{
+        let s=document.getElementById('searchInput')?.value?.toLowerCase()||'',f=allDevices;
+        if(currentFilter==='online')f=f.filter(d=>d.online);
+        else if(currentFilter==='offline')f=f.filter(d=>!d.online);
+        if(s)f=f.filter(d=>d.name.toLowerCase().includes(s)||d.id.includes(s));
+        let c=document.getElementById('deviceList');
+        if(!c)return;
+        if(!f.length){c.innerHTML='<div class="no-data"><i class="fas fa-mobile-alt"></i><p>No devices found</p></div>';return}
+        c.innerHTML=f.map(d=>{
+            let battIcon='fa-battery-full';
+            if(d.battery<=25)battIcon='fa-battery-empty';
+            else if(d.battery<=50)battIcon='fa-battery-quarter';
+            else if(d.battery<=75)battIcon='fa-battery-half';
+            else if(d.battery<=90)battIcon='fa-battery-three-quarters';
+            let battColor=d.battery<=25?'var(--accent)':d.battery<=50?'var(--orange)':'var(--g)';
+            return '<div class="device-card" onclick="selectDeviceControl(\''+d.id+'\')"><div class="dc-icon"><i class="fas fa-mobile-alt"></i></div><div class="dc-info"><div class="dc-name">'+(d.name||'Unknown')+'</div><div class="dc-uid">'+(d.username?d.username.substring(0,10)+'...':'-')+'</div><div class="dc-battery"><i class="fas '+battIcon+'" style="color:'+battColor+'"></i><span style="color:'+battColor+'">'+d.battery+'%</span>'+(d.charging?'<i class="fas fa-bolt" style="color:var(--orange);margin-left:4px"></i>':'')+'</div></div><div class="dc-status"><div class="dc-online '+(d.online?'online':'offline')+'">'+(d.online?'ONLINE':'OFFLINE')+'</div>'+(d.charging?'<div class="dc-charging"><i class="fas fa-bolt"></i> Charging</div>':'')+'</div></div>';
+        }).join('');
+    },200);
+}
+function selectDeviceControl(id){
+    selectedDevice=id;
+    showTab('control');
+    showToast('Device dipilih!');
+}
+function setFilter(f){currentFilter=f;document.querySelectorAll('.filter-tabs button').forEach(b=>b.classList.remove('active'));let idx=f==='all'?1:f==='online'?2:3;document.querySelector('.filter-tabs button:nth-child('+idx+')').classList.add('active');renderDevices()}
+function filterDevices(){renderDevices()}
+
+function listenSliderNews(){db.ref('slider_news').on('value',snap=>{sliderNewsData=[];if(snap.exists())snap.forEach(c=>{sliderNewsData.push({id:c.key,...c.val()})});loadSliderNews()})}
+function loadSliderNews(){let a=document.getElementById('sliderNewsArea');if(!a)return;if(!sliderNewsData.length){a.innerHTML='';return}a.innerHTML='<div class="section-title"><i class="fas fa-newspaper"></i> BERITA</div><div class="news-slider-wrap"><button class="news-arrow" onclick="slideNews(-1)"><i class="fas fa-chevron-left"></i></button><div class="news-slider" id="newsSlider">'+sliderNewsData.map(n=>'<div class="news-card" onclick="'+ (n.type==='url'?'openExternal(\''+n.url+'\')':'showInfoModal(\''+n.title.replace(/'/g,"\\'")+'\',\''+n.desc.replace(/'/g,"\\'")+'\')') +'"><img src="'+n.image+'" onerror="this.style.display=\'none\'"><div class="ninfo"><div class="ntitle">'+n.title+'</div><div class="ndesc">'+n.desc+'</div></div></div>').join('')+'</div><button class="news-arrow" onclick="slideNews(1)"><i class="fas fa-chevron-right"></i></button></div>'}
+function slideNews(d){let s=document.getElementById('newsSlider');if(s)s.scrollBy({left:d*260,behavior:'smooth'})}
+function renderProfileData(){
+    document.getElementById('profileAvatar').textContent=currentUser.charAt(0).toUpperCase();
+    document.getElementById('profileName').textContent=currentUser;
+    document.getElementById('profileRole').textContent=currentRole;
+    document.getElementById('profileUid').textContent=currentUid||'Loading...';
+}
+function renderManagerRoles(){let roles=getRoles(currentRole);if(!roles.includes('MEMBER'))roles.unshift('MEMBER');document.getElementById('newRole').innerHTML=roles.map(r=>'<option value="'+r+'">'+r+'</option>').join('')}
+function toggleSidebar(){document.getElementById('sidebar').classList.add('active');document.getElementById('sidebarOverlay').classList.add('active')}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('active');document.getElementById('sidebarOverlay').classList.remove('active')}
+function listenChat(){db.ref('global_chat').off();db.ref('global_chat').limitToLast(50).on('value',snap=>{chatData=[];if(snap.exists())snap.forEach(c=>{chatData.push({id:c.key,...c.val()})});renderChat()})}
+function renderChat(){let c=document.getElementById('chatMessages');if(!c)return;c.innerHTML=chatData.map(m=>{let rc=m.rank||'MEMBER';return'<div class="chat-bubble"><div class="chat-avatar">'+(m.username||'?').charAt(0).toUpperCase()+'</div><div class="chat-body"><div class="chat-user"><span class="chat-username">'+(m.username||'Unknown')+'</span><span class="chat-rank '+rc+'">'+rc+'</span></div>'+(m.sticker?'<img class="chat-sticker" src="'+m.sticker+'" onclick="window.open(\''+m.sticker+'\',\'_blank\')">':'')+(m.message?'<div class="chat-msg">'+m.message+'</div>':'')+'</div></div>'}).join('');c.scrollTop=c.scrollHeight}
+function sendChat(){let msg=document.getElementById('chatInput').value.trim();if(!msg)return;db.ref('global_chat').push({username:currentUser,rank:currentRole,message:msg,timestamp:Date.now()});document.getElementById('chatInput').value=''}
+function sendSticker(){let file=document.getElementById('stickerFile').files[0];if(!file)return;let reader=new FileReader();reader.onload=function(e){db.ref('global_chat').push({username:currentUser,rank:currentRole,sticker:e.target.result,timestamp:Date.now()});document.getElementById('stickerFile').value=''};reader.readAsDataURL(file)}
+function createAccount(){let u=document.getElementById('newUsername').value.trim(),p=document.getElementById('newPassword').value.trim(),r=document.getElementById('newRole').value,d=parseInt(document.getElementById('expirySelect').value);if(!u||!p){showToast('Isi username & password');return}let data={password:p,role:r,createdBy:currentUser,createdAt:Date.now()};if(d!==99999){let x=new Date();x.setDate(x.getDate()+d);data.expiry=x.toISOString().split('T')[0]}db.ref('users/'+u).set(data).then(()=>{showToast('Akun dibuat: '+u);addDevLog('CREATE: '+u);document.getElementById('newUsername').value='';document.getElementById('newPassword').value=''})}
+function generateNewUid(){currentUid=genUUID();let el=document.getElementById('profileUid');if(el)el.textContent=currentUid;db.ref('uids/'+currentUser).set({uid:currentUid,updatedAt:Date.now()});listenDevices();showToast('UID baru dibuat!')}
+function openPwModal(){document.getElementById('pwModal').classList.add('active')}
+function closePwModal(){document.getElementById('pwModal').classList.remove('active')}
+function changePassword(){let o=document.getElementById('oldPassword').value.trim(),p1=document.getElementById('newPassword1').value.trim(),p2=document.getElementById('newPassword2').value.trim();if(!o||!p1||!p2){document.getElementById('pwError').textContent='Isi semua field';return}if(p1.length<4){document.getElementById('pwError').textContent='Password minimal 4 karakter';return}if(p1!==p2){document.getElementById('pwError').textContent='Password tidak cocok';return}db.ref('users/'+currentUser).once('value').then(snap=>{if(snap.val().password===o)db.ref('users/'+currentUser+'/password').set(p1).then(()=>{showToast('Password diubah!');closePwModal()});else document.getElementById('pwError').textContent='Password lama salah'})}
+function logout(){localStorage.removeItem('bluxus_session');currentUser=null;currentRole=null;selectedDevice=null;db.ref('devices').off();db.ref('results').off();db.ref('news').off();db.ref('global_chat').off();db.ref('slider_news').off();db.ref('dev_log').off();db.ref('global_refresh').off();pageCache={};aiMessages={nova:[],blux:[]};document.getElementById('dashboardScreen').classList.remove('active');document.getElementById('loginScreen').classList.add('active');document.getElementById('username').value='';document.getElementById('password').value='';closeSidebar();showToast('Logged out')}
+function refreshAll(){if(currentUser){showTab('home');loadStats();showToast('Refreshed!')}}
+
+function globalRefresh(){db.ref('global_refresh').set({timestamp:Date.now(),triggeredBy:currentUser}).then(()=>{showToast('Global refresh sent!');addDevLog('GLOBAL REFRESH')})}
+function listenDevLog(){db.ref('dev_log').on('value',snap=>{devLogs=[];if(snap.exists())snap.forEach(c=>{devLogs.push(c.val())});let v=document.getElementById('devLogView');if(v)v.innerHTML=devLogs.map(l=>'<div class="log-line"><span class="log-time">['+l.time+']</span>'+l.action+'</div>').join('')||'No logs'})}
+function renderDevLog(){let v=document.getElementById('devLogView');if(!v)return;v.innerHTML=devLogs.map(l=>'<div class="log-line"><span class="log-time">['+l.time+']</span>'+l.action+'</div>').join('')||'No logs yet'}
+async function renderDevUsers(){let snap=await db.ref('users').once('value');let users=[];if(snap.exists())snap.forEach(c=>{let d=c.val();d.username=c.key;users.push(d)});let html='<table class="user-table"><tr><th>Username</th><th>Role</th><th>Password</th><th>Expired</th><th>Aksi</th></tr>';users.forEach(u=>{let canDelete=ROLES.indexOf(u.role||'MEMBER')<ROLES.indexOf(currentRole);html+='<tr><td><strong>'+u.username+'</strong></td><td><span class="badge-role badge-'+(u.role||'MEMBER')+'">'+(u.role||'MEMBER')+'</span></td><td>****</td><td>'+(u.expiry||'Permanent')+'</td><td>'+(u.username!==currentUser&&canDelete?'<button class="btn-sm danger" onclick="deleteUser(\''+u.username+'\')">HAPUS</button> <button class="btn-sm outline" onclick="banUser(\''+u.username+'\')">'+(u.banned?'UNBAN':'BAN')+'</button>':'')+'</td></tr>'});html+='</table>';document.getElementById('devUserTable').innerHTML=html}
+function renderUpRoleSelect(){let roles=getRoles('DEVELOPER').filter(r=>r!=='MEMBER');document.getElementById('upRole').innerHTML=roles.map(r=>'<option value="'+r+'">'+r+'</option>').join('')}
+function devAddAccount(){let u=document.getElementById('daUser').value.trim(),p=document.getElementById('daPass').value.trim(),r=document.getElementById('daRole').value,d=parseInt(document.getElementById('daExp').value);if(!u||!p){showToast('Isi username & password');return}let data={password:p,role:r,createdBy:currentUser,createdAt:new Date().toISOString()};if(d!==99999){let x=new Date();x.setDate(x.getDate()+d);data.expiry=x.toISOString().split('T')[0]}db.ref('users/'+u).set(data).then(()=>{showToast('Akun dibuat: '+u);addDevLog('ADD: '+u);document.getElementById('daUser').value='';document.getElementById('daPass').value='';renderDevUsers()})}
+function deleteUser(u){db.ref('users/'+u).once('value').then(snap=>{let targetRole=snap.val()?.role||'MEMBER';if(ROLES.indexOf(targetRole)>=ROLES.indexOf(currentRole)){showToast('Gabisa hapus role diatas/sama!');return}db.ref('users/'+u).remove().then(()=>{showToast(u+' dihapus');addDevLog('DELETE: '+u);renderDevUsers()})})}
+function banUser(u){db.ref('users/'+u+'/banned').once('value').then(s=>{db.ref('users/'+u+'/banned').set(!s.val()).then(()=>{showToast(u+(s.val()?' unbanned':' banned'));addDevLog((s.val()?'UNBAN: ':'BAN: ')+u);renderDevUsers()})})}
+function broadcast(){let msg=document.getElementById('broadcastMsg').value.trim();if(!msg){showToast('Isi pesan');return}if(!msg.includes(':')){showToast('Format: <nama>:<teks>');return}db.ref('broadcast').push({message:msg,from:currentUser,timestamp:Date.now()}).then(()=>{showToast('Broadcast terkirim');addDevLog('BROADCAST');document.getElementById('broadcastMsg').value=''})}
+function upgradeRole(){let u=document.getElementById('upUser').value.trim(),r=document.getElementById('upRole').value;if(!u){showToast('Isi username');return}db.ref('users/'+u+'/role').set(r).then(()=>{showToast(u+' diupgrade ke '+r);addDevLog('UPROLE: '+u+' -> '+r);renderDevUsers()})}
+
+async function downloadMedia(){let url=document.getElementById('dlUrl').value.trim();if(!url){showToast('Paste link');return}let res=document.getElementById('dlResult');res.style.display='block';res.innerHTML='Loading...';try{let r=await fetch('https://api.theresav.biz.id/download/aio-v3?url='+encodeURIComponent(url)+'&apikey='+API_KEY);let d=await r.json();if(d.status)res.innerHTML=d.result.map(x=>'<a href="'+x.url+'" target="_blank">'+x.quality+' - Download</a>').join('<br>');else res.innerHTML='Gagal'}catch(e){res.innerHTML='Error'}}
+async function loadGempa(){let c=document.getElementById('gempaContent');if(!c)return;c.innerHTML='Loading...';try{let r=await fetch('https://api.theresav.biz.id/info/cekgempa?apikey='+API_KEY);let d=await r.json();if(!d.status||!d.result){c.innerHTML='Gagal';return}let g=d.result,html='';if(g.auto){let a=g.auto;html+='<div style="text-align:center;padding:20px;background:rgba(255,0,0,0.05);border-radius:14px;margin-bottom:14px"><div style="font-family:Orbitron;font-size:44px;font-weight:900;color:var(--accent)">'+a.Magnitude+' M</div><div style="color:var(--t);font-size:13px">'+a.Tanggal+' - '+a.Jam+'<br>'+a.Wilayah+'<br>'+a.Kedalaman+'</div></div>'}if(g.terkini&&g.terkini.length){html+='<h4 style="color:#fff;margin-bottom:10px">GEMPA TERKINI</h4>';g.terkini.slice(0,10).forEach(q=>{html+='<div class="result-card"><div class="result-info"><span style="font-weight:700;color:var(--accent);font-size:15px">'+q.Magnitude+' M</span> <span style="color:var(--t);font-size:12px">'+q.Tanggal+' - '+q.Wilayah+' ('+q.Kedalaman+')</span></div></div>'})}c.innerHTML=html||'No data'}catch(e){c.innerHTML='Error'}}
+async function getSource(){let url=document.getElementById('sourceUrl').value.trim();if(!url){showToast('Paste URL');return}let res=document.getElementById('sourceResult');res.style.display='block';res.textContent='Loading...';try{let r=await fetch('https://api.theresav.biz.id/bypass/get-source?url='+encodeURIComponent(url)+'&apikey='+API_KEY);let d=await r.json();res.textContent=d.result||d.response||'No data'}catch(e){res.textContent='Error'}}
+async function yummySearch(){let q=document.getElementById('yQuery').value.trim();if(!q){showToast('Isi kata kunci');return}let c=document.getElementById('yResults');c.innerHTML='Loading...';try{let[andi,wp]=await Promise.all([fetch('https://api.theresav.biz.id/ai/andi?text='+encodeURIComponent(q)+'&apikey='+API_KEY),fetch('https://api.theresav.biz.id/ai/webpilot?text='+encodeURIComponent(q)+'&apikey='+API_KEY)]);let ad=await andi.json(),wd=await wp.json(),html='';if(wd.status&&wd.result.chat){html+='<div class="search-summary"><div class="ss-text">'+wd.result.chat+'</div>'+(wd.result.source?'<div class="ss-sources">'+wd.result.source.map(s=>'<a href="'+s.link+'" target="_blank">'+s.title+'</a>').join('')+'</div>':'')+'</div>'}if(ad.status&&ad.result.results){ad.result.results.slice(0,10).forEach(r=>{html+='<div class="result-card" onclick="openExternal(\''+r.link+'\')"><img class="result-cover" src="'+(r.image||'')+'" onerror="this.style.display=\'none\'"><div class="result-info"><div class="result-name">'+(r.title||'')+'</div><div class="result-artist">'+(r.desc||r.answer||'')+'</div><div class="result-dur">'+(r.source||'')+'</div></div></div>'})}c.innerHTML=html||'No results'}catch(e){c.innerHTML='Error'}}
+async function getWeather(){let q=document.getElementById('wCity').value.trim();if(!q){showToast('Isi nama kota');return}let c=document.getElementById('weatherResult');c.innerHTML='Loading...';try{let r=await fetch('https://api.theresav.biz.id/info/weather?text='+encodeURIComponent(q)+'&apikey='+API_KEY);let d=await r.json();if(d.status){let w=d.result;c.innerHTML='<div class="weather-card"><img src="'+w.icon+'" onerror="this.style.display=\'none\'"><div class="temp">'+w.suhu+'</div><div class="desc">'+w.cuaca+'</div><div class="detail"><div class="wd">Lokasi: <span>'+w.lokasi+'</span></div><div class="wd">Kelembapan: <span>'+w.kelembapan+'</span></div><div class="wd">Angin: <span>'+w.angin+'</span></div><div class="wd">Tekanan: <span>'+w.tekanan_udara+'</span></div><div class="wd">Zona: <span>'+w.zona_waktu+'</span></div></div></div>'}else c.innerHTML='Kota tidak ditemukan'}catch(e){c.innerHTML='Error'}}
+async function uploadHD(){let f=document.getElementById('hdFile').files[0];if(!f)return;let c=document.getElementById('hdResult');c.innerHTML='Enhancing...';let fd=new FormData();fd.append('image',f);fd.append('scale','4');fd.append('apikey',API_KEY);try{let r=await fetch('https://api.theresav.biz.id/tools/hd',{method:'POST',body:fd});let d=await r.json();if(d.status)c.innerHTML='<img src="'+(d.result||d.image)+'" style="max-width:100%;border-radius:10px"><br><a href="'+(d.result||d.image)+'" download style="color:var(--accent)">Download</a>';else c.innerHTML='Gagal'}catch(e){c.innerHTML='Error'}}
+async function uploadWink(){let f=document.getElementById('winkFile').files[0];if(!f)return;let t=document.getElementById('winkType').value,c=document.getElementById('winkResult');c.innerHTML='Enhancing...';let fd=new FormData();fd.append('image',f);fd.append('hd_type',t);fd.append('apikey',API_KEY);try{let r=await fetch('https://api.theresav.biz.id/tools/winkai',{method:'POST',body:fd});let d=await r.json();if(d.status)c.innerHTML='<img src="'+(d.result||d.image)+'" style="max-width:100%;border-radius:10px"><br><a href="'+(d.result||d.image)+'" download style="color:var(--accent)">Download</a>';else c.innerHTML='Gagal'}catch(e){c.innerHTML='Error'}}
+async function uploadGoFile(){let f=document.getElementById('gfFile').files[0];if(!f)return;let c=document.getElementById('gfResult');c.innerHTML='Uploading...';let fd=new FormData();fd.append('file',f);fd.append('apikey',API_KEY);try{let r=await fetch('https://api.theresav.biz.id/tools/gofile',{method:'POST',body:fd});let d=await r.json();if(d.status)c.innerHTML='<div style="padding:14px;background:rgba(0,255,136,0.05);border-radius:10px"><p style="color:var(--g)">Upload berhasil!</p><p style="font-size:11px">'+d.result.filename+'</p><a href="'+d.result.download_page+'" target="_blank" style="color:var(--accent)">Buka Link</a></div>';else c.innerHTML='Gagal'}catch(e){c.innerHTML='Error'}}
+async function sendAI(){if(!aiActive)return;let input=document.getElementById('aiInput'),msg=input.value.trim();if(!msg)return;let msgs=document.getElementById('aiMessages'),typing=document.getElementById('aiTyping'),status=document.getElementById('aiStatus');let userMsg='<div class="ai-msg user">'+msg+'</div>';aiMessages['nova'].push(userMsg);msgs.innerHTML+=userMsg;input.value='';msgs.scrollTop=msgs.scrollHeight;typing.classList.add('active');status.className='ai-status typing';status.innerHTML='<span class="dot"></span> Mengetik...';try{let r=await fetch('https://api.theresav.biz.id/ai/nova?text='+encodeURIComponent(msg)+'&apikey='+API_KEY);let d=await r.json();let reply=(d.result||d.response||'').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\*(.*?)\*/g,'<i>$1</i>').replace(/`(.*?)`/g,'<code>$1</code>');let aiMsg='<div class="ai-msg ai">'+(reply||'No response')+'</div>';aiMessages['nova'].push(aiMsg);msgs.innerHTML+=aiMsg}catch(e){aiMessages['nova'].push('<div class="ai-msg ai">Error</div>');msgs.innerHTML+='<div class="ai-msg ai">Error</div>'}typing.classList.remove('active');status.className='ai-status';status.innerHTML='<span class="dot"></span> Online';msgs.scrollTop=msgs.scrollHeight}
+
+// ====== REPORT ======
+function sendReport(){
+    let msg=document.getElementById('reportInput').value.trim();
+    if(!msg){showToast('Isi laporan!');return}
+    db.ref('reports').push({username:currentUser,message:msg,timestamp:Date.now()}).then(()=>{
+        showToast('Laporan terkirim!');
+        document.getElementById('reportInput').value='';
+        listenReports();
+    });
+}
+function listenReports(){
+    db.ref('reports').on('value',snap=>{
+        reports=[];
+        if(snap.exists())snap.forEach(c=>{
+            let d=c.val();
+            d.id=c.key;
+            reports.push(d);
+        });
+        renderReports();
+    });
+}
+function renderReports(){
+    let c=document.getElementById('reportList');
+    if(!c)return;
+    if(!reports.length){c.innerHTML='<p class="no-data">Belum ada laporan</p>';return}
+    c.innerHTML=reports.map(r=>{
+        let date=new Date(r.timestamp).toLocaleDateString()+' '+new Date(r.timestamp).toLocaleTimeString();
+        return '<div class="report-card"><div class="r-user">'+r.username+'</div><div class="r-date">'+date+'</div><div class="r-msg">'+r.message+'</div><button class="btn-sm danger" onclick="deleteReport(\''+r.id+'\')" style="float:right;margin-top:-30px">HAPUS</button></div>';
+    }).join('');
+}
+function deleteReport(id){
+    if(!confirm('Hapus laporan ini?'))return;
+    db.ref('reports/'+id).remove().then(()=>{
+        showToast('Laporan dihapus!');
+        listenReports();
+    });
+}
+function showReports(){
+    document.getElementById('reportsArea').innerHTML=reports.map(r=>{
+        let date=new Date(r.timestamp).toLocaleDateString()+' '+new Date(r.timestamp).toLocaleTimeString();
+        return '<div class="report-card"><div class="r-user">'+r.username+'</div><div class="r-date">'+date+'</div><div class="r-msg">'+r.message+'</div></div>';
+    }).join('')||'<p class="no-data">Belum ada laporan</p>';
+}
+
+let textSets=document.querySelectorAll('.text-set'),ci=0,anim=false;
+function wrapText(el){let t=el.textContent;el.innerHTML=t.split('').map((c,i)=>'<span class="char" style="animation-delay:'+i*0.05+'s">'+(c===' '?'&nbsp;':c)+'</span>').join('')}
+function animIn(ts){let g=ts.querySelector('.glitch-text');wrapText(g);g.setAttribute('data-text',g.textContent)}
+function animOut(ts){ts.querySelectorAll('.char').forEach((c,i)=>{c.style.animationDelay=i*0.02+'s';c.classList.add('out')})}
+function rotate(){if(anim)return;anim=true;let cur=textSets[ci],next=textSets[(ci+1)%textSets.length];animOut(cur);setTimeout(()=>{cur.classList.remove('active');next.classList.add('active');animIn(next);ci=(ci+1)%textSets.length;anim=false},600)}
+textSets[0].classList.add('active');animIn(textSets[0]);setInterval(rotate,5000);
+for(let i=0;i<10;i++){devRamHistory.push(Math.floor(Math.random()*25+35));devDiskHistory.push(Math.floor(Math.random()*30+40));devMemHistory.push(Math.floor(Math.random()*150+100))}
+</script>
 </body>
 </html>
